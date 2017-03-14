@@ -1,0 +1,142 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+
+
+ion-nav .scroll-content{
+	background : #f8f8f8;
+}
+
+
+/*MARGIN ------------------------------------------*/
+.margin-0{
+	margin           : 0 !important;
+}
+
+.margin-10{
+	margin           : 10px !important;
+}
+
+.margin-top-20{
+	margin-top       : 20px !important;
+}
+
+.margin-top-30{
+	margin-top       : 30px !important;
+}
+
+.margin-bottom-30{
+	margin-bottom    : 30px !important;
+}
+
+ion-card.margin-0{
+	width            : auto !important;
+}
+
+
+
+/*HEADER MENU ---------------------------------*/
+.item-avatar{
+	border           : none;
+	background       : none;
+}
+
+.item-background{
+	background       : url('../assets/avatar-background.jpg');
+	background-color : #f53d3d;
+	padding          : 0;
+}
+
+.item-background.item{
+	border-top       : none;
+}
+
+.item-background-transparency{
+	background-color : rgba(0,0,0,0.1);
+	padding          : 10px;
+}
+
+.item-background-transparency h2,
+.item-background-transparency p{
+	color            : white !important;
+}
+
+h2{
+	font-weight      : bold !important;
+}
+
+ion-item.item-background .item-inner,
+ion-item.item-background .item-inner .input-wrapper,
+ion-item.item-background .item-inner .input-wrapper ion-label{
+	margin: 0 !important;
+	padding-right: 0 !important;
+}
+
+
+
+//SPINNER -----------------------------------
+.img-loaded + div.spinner{
+	display    : none;
+}
+
+div.spinner{
+	position   : absolute;
+	margin     : auto;
+	z-index    : 11;
+	text-align : center;
+	top        : 0;
+	left       : 0;
+	bottom     : 0;
+	right      : 0;
+}
+
+div.spinner ion-spinner{
+	width      : 20%;
+}
+
+//INDIVIDUAL
+div.spinner.main, div.spinner.main ion-spinner{
+	height     : 100vh !important;
+}
+
+
+
+ion-loading{
+	z-index             : 10001 !important;
+}
+
+
+
+
+
+//OTHERS ---------------------------------
+ion-col[width-50]{
+	padding    : 0;
+}
+
+ion-card ion-img {
+	display    : block !important;
+	width      : 100% !important;
+}
+
+.text-center{
+	text-align : center;
+}
+
+ion-buttons button{
+	padding    : 10px !important;
+}
