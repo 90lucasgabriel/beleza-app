@@ -21,14 +21,28 @@ ion-nav .scroll-content{
 	background : #f8f8f8;
 }
 
+.white-background{
+	padding-bottom: 20px;
+	background: white;
+	border-bottom: 2px solid #CCC;
+}
+
 
 /*MARGIN ------------------------------------------*/
 .margin-0{
 	margin           : 0 !important;
 }
 
+.margin-top-5{
+	margin-top       : 5px !important;
+}
+
 .margin-10{
 	margin           : 10px !important;
+}
+
+.margin-top-10{
+	margin-top       : 10px !important;
 }
 
 .margin-top-20{
@@ -39,8 +53,16 @@ ion-nav .scroll-content{
 	margin-top       : 30px !important;
 }
 
+.margin-bottom-10{
+	margin-bottom    : 10px !important;
+}
+
 .margin-bottom-30{
 	margin-bottom    : 30px !important;
+}
+
+.padding-30{
+	padding          : 30px !important;
 }
 
 ion-card.margin-0{
@@ -123,6 +145,31 @@ ion-loading{
 
 
 
+
+//SLIDES ---------------------------------
+ion-slides.main ion-img {
+	min-width: 100%;
+	min-height: 310px;
+}
+
+ion-slides.main{
+	height: 300px;
+}
+.swiper-slide {
+	align-items: baseline;
+}
+
+ion-slides img {
+	margin: 0;
+	width: 100% !important;
+}
+
+div.spinner{
+		height     : 0px;
+}
+
+
+
 //OTHERS ---------------------------------
 ion-col[width-50]{
 	padding    : 0;
@@ -139,4 +186,26 @@ ion-card ion-img {
 
 ion-buttons button{
 	padding    : 10px !important;
+}
+
+.background-fixed{
+	height     : 100vh;
+	width      : 100%;
+	position   : fixed;
+	top        : 0px !important;
+	z-index    : -1;
+}
+
+
+
+.primary-background{
+	background: #db2323;
+}
+
+.dark-background{
+	background: #222;
+}
+
+.primary-color{
+	color: white !important;
 }

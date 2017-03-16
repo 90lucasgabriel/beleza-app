@@ -1,0 +1,137 @@
+<ion-header>  
+  <ion-navbar color="primary">
+	  <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="share"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="spinner main" *ngIf="showSpinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  
+  <ion-fab right bottom *ngIf="!showSpinner"> 
+    <button ion-fab (click)="goOrderWorkflow(1)"><ion-icon name="calendar"></ion-icon></button>
+  </ion-fab>
+
+  <div *ngIf="!showSpinner"  class="margin-bottom-30">
+    <ion-slides pager class="main">
+      <ion-slide *ngFor="let picture of pictures">
+        <ion-img [src]="picture.url"></ion-img>
+        <div class="spinner">
+          <ion-spinner></ion-spinner>
+        </div> 
+      </ion-slide>
+    </ion-slides>
+    
+    
+
+    <ion-card class="margin-0" style="position: relative">
+         
+      <ion-card-header class="primary-color dark-background">
+        <h1 class="primary-color">
+          Nome do Estabelecimento
+        </h1>
+        <p class="primary-color">
+          10 Avaliações
+        </p>
+      </ion-card-header>
+      
+      <ion-card-content class="margin-top-10 margin-bottom-10" style="padding: 0">
+        <ion-grid>
+          <ion-row>          
+            <ion-col text-center  (click)="goOrderWorkflow(1)">
+              <button ion-button icon-only clear round color="dark">
+                <ion-icon name="calendar"></ion-icon>
+              </button>
+              <p>Agendar</p>
+            </ion-col>
+            <ion-col text-center>
+              <button ion-button icon-only clear round color="dark">
+                <ion-icon name="call"></ion-icon>
+              </button>
+              <p>Ligar</p>
+            </ion-col>
+            <ion-col text-center>
+              <button ion-button icon-only clear round color="dark">
+                <ion-icon name="heart-outline"></ion-icon>
+              </button>
+              <p>Favorito</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <hr />
+        <p padding>
+          {{ establishment?.description }}
+          Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. 
+        </p>
+        <hr />
+
+        <ion-list>
+        <ion-item (click)="showServiceList()">
+          <ion-icon item-left name="pin"></ion-icon>
+          Av. Endereço, 100, São Bernardo do Campo - SP - 091902-920
+        </ion-item>
+
+        <ion-item>
+          <ion-icon item-left name="call"></ion-icon>
+          (11) 93981-2391
+        </ion-item>
+
+        <ion-item>
+          <ion-icon item-left name="globe"></ion-icon>
+          http://www.estabelecimento.com.br
+        </ion-item>
+      </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+
+    <h4 class="margin-10 margin-top-30">
+      Avaliações
+    </h4>
+    <ion-card>
+      <ion-list>
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="http://knowledge-commons.com/static/assets/images/avatar.png">
+          </ion-avatar>
+          <h3>Cher</h3>
+          <h5>01/01/2017</h5>
+          <p>Ugha osaidh saoda isdhas doias doaisdha sodiahs doaishd asoidh asdihas doiah doiashd oais hdaoisdh </p>
+        </ion-item>
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="http://knowledge-commons.com/static/assets/images/avatar.png">
+          </ion-avatar>
+          <h3>Cher</h3>
+          <h5>01/01/2017</h5>
+          <p>Ugha osaidh saoda isdhas doias doaisdha sodiahs doaishd asoidh asdihas doiah doiashd oais hdaoisdh </p>
+        </ion-item>
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="http://knowledge-commons.com/static/assets/images/avatar.png">
+          </ion-avatar>
+          <h3>Cher</h3>
+          <h5>01/01/2017</h5>
+          <p>Ugha osaidh saoda isdhas doias doaisdha sodiahs doaishd asoidh asdihas doiah doiashd oais hdaoisdh </p>
+        </ion-item>
+      </ion-list>
+      <div class="margin-10 text-center">
+        <hr />
+        <button ion-button clear block>Todos os Comentários</button>
+      </div>
+    </ion-card>
+  
+
+  </div>
+  
+
+
+
+</ion-content>

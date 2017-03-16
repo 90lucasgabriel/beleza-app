@@ -6,7 +6,9 @@ import { LocalStorage }            from '../common/services/local-storage';
 import { UserService }             from '../pages/user/user.service';
 
 import { AccountListPage }         from '../pages/account/account-list/account-list';
+import { EstablishmentListPage }   from '../pages/establishment/establishment-list/establishment-list';
 import { UserLoginPage }           from '../pages/user/user-login/user-login';
+import { OrderWorkflowPage }       from '../pages/order/order-workflow/order-workflow';
 import { ServiceListPage }         from '../pages/service/service-list/service-list';
 
 
@@ -18,7 +20,7 @@ import { ServiceListPage }         from '../pages/service/service-list/service-l
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage            : any    = ServiceListPage;
+  rootPage            : any    = EstablishmentListPage;
   pages               : Array<{title: string, component: any}>;
   public userPicture  : string = 'http://knowledge-commons.com/static/assets/images/avatar.png';
   public userEmail    : string = 'Entre com sua conta';
@@ -57,7 +59,8 @@ export class MyApp {
 
     if(this.$user.isLogged() || value){
       this.pages = [
-        { title: 'Produtos', component: ServiceListPage},
+        { title: 'Workflow', component: OrderWorkflowPage},
+        { title: 'Serviços', component: ServiceListPage},
         { title: 'Sair',     component: null},
       ];
 
@@ -77,7 +80,8 @@ export class MyApp {
     }
     else{
       this.pages = [
-        { title: 'Services', component: ServiceListPage},
+        { title: 'Workflow', component: OrderWorkflowPage},
+        { title: 'Serviços', component: ServiceListPage},
       ]; 
 
       this.userEmail   = 'Entre com sua conta';

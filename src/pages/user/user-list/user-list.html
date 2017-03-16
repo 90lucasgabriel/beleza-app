@@ -1,0 +1,62 @@
+<!--
+  Generated template for the ServiceList page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>  
+  <ion-navbar color="primary">
+	  <button ion-button menuToggle>
+	    <ion-icon name="menu"></ion-icon>
+	  </button>
+	  <ion-title>Serviços</ion-title>
+	  <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="goServiceSearch()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content style="position: relative">
+	<ion-refresher (ionRefresh)="doRefresh($event)" [pullMin]="90">
+    <ion-refresher-content
+      pullingText="Puxe para atualizar"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="spinner main" *ngIf="showSpinner">
+    <ion-spinner></ion-spinner>
+  </div>
+        
+  
+  <ion-grid>
+  <ion-row wrap>
+    <ion-col width-50  *ngFor="let service of services" >
+
+    <ion-card class="margin" text-center
+      (click)="goServiceDetails(service.id)">
+      <ion-img [src]="service?.images.data[0].url"></ion-img>
+      <div class="spinner">
+        <ion-spinner></ion-spinner>
+      </div> 
+      <ion-card-content text-left>
+        <ion-card-title>
+          R$ {{service.price}}
+        </ion-card-title>
+        <p>
+          {{service.id}} {{service.name}}
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+ <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+
+</ion-content>

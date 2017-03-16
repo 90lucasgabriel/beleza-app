@@ -6,7 +6,10 @@ import { ResourceModule }             from 'ng2-resource-rest';
 //import { ModelsModule }               from '../common/models/models.module';
 import { LocalStorage }               from '../common/services/local-storage';
 import { AuthGuardResource }          from '../common/services/auth-guard-resource';
+
 import { AccountModule }              from '../pages/account/account.module';
+import { EstablishmentModule }        from '../pages/establishment/establishment.module';
+import { OrderModule }                from '../pages/order/order.module';
 import { ServiceModule }              from '../pages/service/service.module';
 import { UserModule }                 from '../pages/user/user.module';
 import { UserService }                from '../pages/user/user.service';
@@ -22,9 +25,11 @@ import { MyApp }                      from './app.component';
     IonicModule.forRoot(MyApp),
 
     ResourceModule.forRoot(),
+    AccountModule.forRoot(),
+    EstablishmentModule.forRoot(),
+    OrderModule.forRoot(),
     ServiceModule.forRoot(),
     UserModule.forRoot(),
-    AccountModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
