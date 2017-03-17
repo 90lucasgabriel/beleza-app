@@ -1,5 +1,6 @@
 import { Component }             from '@angular/core';
 import { Events, NavController, ViewController, AlertController, LoadingController } from 'ionic-angular';
+import { StatusBar } from 'ionic-native';
 
 import { LocalStorage }          from '../../../common/services/local-storage';
 
@@ -37,6 +38,7 @@ export class UserLoginPage {
 		public  loadingCtrl   : LoadingController,
 		private $localStorage : LocalStorage,
 		private $user         : UserService) {
+  	StatusBar.backgroundColorByHexString('#333');
 			this.messages= this.$localStorage.get('user');
 			
 			//Cria o evento que verifica se o usuário está logado
@@ -140,7 +142,11 @@ export class UserLoginPage {
     this.loader.present();
   }
 
+  public ionViewDidLeave(){
+  	//StatusBar.backgroundColorByHexString('#a01b1b');
+  	StatusBar.backgroundColorByHexString('#bc1c1c');
 
+  }
 
 
 

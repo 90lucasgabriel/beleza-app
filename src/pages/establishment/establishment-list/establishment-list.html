@@ -4,6 +4,20 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-header *ngIf="true">  
+  <ion-navbar color="primary">
+    <button ion-button color="white" clear menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
 <ion-header *ngIf="false">  
   <ion-navbar color="primary">
     <ion-row>
@@ -14,7 +28,7 @@
       </ion-col>
       <ion-col col-10 >
         <ion-card>
-        <ion-searchbar (input)="search($event)" placeholder="Pesquisar salão ou endereço"  #searchbar class="margin-top-5"></ion-searchbar>
+        <ion-searchbar (input)="search($event)" placeholder="Pesquisar salão ou endereço"  #searchbar></ion-searchbar>
         </ion-card>
       </ion-col>
     </ion-row> 
@@ -22,7 +36,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-header no-border  *ngIf="true">  
+<ion-header no-border  *ngIf="false">  
   <ion-navbar color="transparent">
     
   <ion-card>
@@ -51,28 +65,23 @@
   <div *ngIf="!showSpinner">
     <div class="background-fixed text-center">
       <img src="https://developers.google.com/maps/documentation/android-api/images/camera-angle-45-shot.png?hl=pt-br" style="width: 100%; height: 100%" />
-      <iframe *ngIf="false"
-        width="400"
-        height="400"
-        frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/key=AIzaSyBey7xhypFumeGwAPSTGRcxPPBQt39XQC4&place?q=Space+Needle,Seattle+WA" allowfullscreen>
-      </iframe>
     </div>
     
     
 
           <ion-list style="margin-top: 60vh !important; position: absolute; width: 100%; box-shadow: 0px -3px 10px rgba(0,0,0,0.4)">
             <ion-item *ngFor="let establishment of establishments">  
-              <ion-thumbnail item-left (click)="goEstablishmentDetails(establishment.id)">
+              <ion-avatar item-left (tap)="goEstablishmentDetails(establishment.id)">
                 <img src="http://lorempixel.com/100/100/city/">
-              </ion-thumbnail>
-              <div (click)="goEstablishmentDetails(establishment.id)">
+              </ion-avatar>
+              <div (tap)="goEstablishmentDetails(establishment.id)">
                 <h2>{{ establishment.description }}</h2>
                 <p>5 km</p>
               </div>
-              <button ion-button icon-only clear round item-right large (click)="goOrderWorkflow(establishment.id)" >
-                <ion-icon name="calendar"></ion-icon>
-              </button>
+
+              <button ion-button icon-only clear round item-right  (tap)="goOrderWorkflow(establishment.id)" padding>
+                    <ion-icon name="calendar" color="dark"></ion-icon>
+                  </button>
             </ion-item>
           </ion-list>
         

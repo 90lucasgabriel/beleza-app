@@ -47,6 +47,9 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
+      StatusBar.overlaysWebView(true);
+      //StatusBar.backgroundColorByHexString('#a01b1b');
+      StatusBar.backgroundColorByHexString('#bc1c1c');
       Splashscreen.hide();
     });
 

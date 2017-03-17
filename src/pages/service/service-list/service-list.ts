@@ -1,6 +1,7 @@
 import { Component } 		            from '@angular/core';
 import { NavController, ViewController } 	          from 'ionic-angular';
 
+
 import { QueryInput }               from '../../../common/models/query-input';
 import { Service }                  from '../service.model';
 import { SERVICE, ServiceService }  from '../service.service';
@@ -65,6 +66,9 @@ export class ServiceListPage {
     private $service      : ServiceService,
     private $localStorage : LocalStorage) {
   }
+
+
+
 
 
 

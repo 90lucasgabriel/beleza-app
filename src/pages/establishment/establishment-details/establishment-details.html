@@ -19,7 +19,8 @@
   </ion-fab>
 
   <div *ngIf="!showSpinner"  class="margin-bottom-30">
-    <ion-slides pager class="main">
+  
+    <ion-slides pager class="main background-fixed text-center">
       <ion-slide *ngFor="let picture of pictures">
         <ion-img [src]="picture.url"></ion-img>
         <div class="spinner">
@@ -29,8 +30,8 @@
     </ion-slides>
     
     
-
-    <ion-card class="margin-0" style="position: relative">
+    <div style="margin-top: 230px !important; position: absolute; width: 100%; box-shadow: 0px -3px 10px rgba(0,0,0,0.4); background: #f8f8f8">
+    <ion-card no-margin style="width: 100%">
          
       <ion-card-header class="primary-color dark-background">
         <h1 class="primary-color">
@@ -128,6 +129,7 @@
       </div>
     </ion-card>
   
+    </div>
 
   </div>
   

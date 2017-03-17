@@ -5,6 +5,7 @@ import { QueryInput }               from '../../../common/models/query-input';
 import { LocalStorage }             from '../../../common/services/local-storage';
 
 import { ServiceListPage }          from '../../service/service-list/service-list';
+import { UserListPage }             from '../../user/user-list/user-list';
 
 
 @Component({
@@ -42,7 +43,10 @@ export class OrderWorkflowPage {
     modal.present(); 
   }
 
-
+  public showUserProfessionalList(): void{
+    let modal = this.modalCtrl.create(UserListPage);
+    modal.present(); 
+  }
 
 
 }
