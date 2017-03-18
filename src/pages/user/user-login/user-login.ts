@@ -142,9 +142,9 @@ export class UserLoginPage {
     this.loader.present();
   }
 
-  public ionViewDidLeave(){
-  	//StatusBar.backgroundColorByHexString('#a01b1b');
-  	StatusBar.backgroundColorByHexString('#bc1c1c');
+  public ionViewWillLeave(){
+  	StatusBar.backgroundColorByHexString('#a01b1b');
+  	//StatusBar.backgroundColorByHexString('#bc1c1c');
 
   }
 

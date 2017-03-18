@@ -84,7 +84,7 @@ ion-card.margin-0{
 
 .item-background{
 	background       : url('../assets/avatar-background.jpg');
-	background-color : #f53d3d;
+	background-color : /*#f53d3d*/#a01b1b;
 	padding          : 0;
 }
 
@@ -93,7 +93,7 @@ ion-card.margin-0{
 }
 
 .item-background-transparency{
-	background-color : rgba(0,0,0,0.1);
+	/*background-color : rgba(0,0,0,0.1);*/
 	padding          : 10px;
 }
 

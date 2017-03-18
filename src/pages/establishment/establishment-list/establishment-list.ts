@@ -1,7 +1,7 @@
 import { NavController, ViewController } 	          from 'ionic-angular';
 import { Component }                  from '@angular/core';
 
-/*import {
+import {
  GoogleMap,
  GoogleMapsEvent,
  GoogleMapsLatLng,
@@ -9,6 +9,7 @@ import { Component }                  from '@angular/core';
  GoogleMapsMarkerOptions,
  GoogleMapsMarker} from 'ionic-native';
 
+/*
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 */
 import { QueryInput }                 from '../../../common/models/query-input';
@@ -84,7 +85,7 @@ export class EstablishmentListPage {
 
 
   //GOOGLE MAPS ---------------------------------------------------------
-/*
+
     public loadMap() {
    // make sure to create following structure in your view.html file
    // and add a height (for example 100%) to it, else the map won't be visible
@@ -126,7 +127,7 @@ export class EstablishmentListPage {
       });
 
 }
-*/
+
 /*
 loadMap(){
  
