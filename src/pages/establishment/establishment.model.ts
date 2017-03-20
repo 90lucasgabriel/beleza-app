@@ -1,7 +1,12 @@
 export interface Establishment{
 	id			: number,
-	name        : string,
-	description : string,
+	address     : string,
+	city        : string,
+	phone       : string,
+	state       : string,
+	zipcode     : string,
+	establishment: EstablishmentDetails,
+	
 	image       : string,
 	images      : {
 		data    : Array<EstablishmentImage>
@@ -10,6 +15,12 @@ export interface Establishment{
 	updated_at  : Object
 }
 
+export interface EstablishmentDetails{
+	id: number,
+	name: string,
+	description: string,
+	image: string
+}
 
 export interface EstablishmentImage{
 	id          : number,

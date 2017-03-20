@@ -1,5 +1,6 @@
-import { NavController, ViewController } 	          from 'ionic-angular';
-import { Component }                  from '@angular/core';
+import { NavController, ViewController, Events, Content }  from 'ionic-angular';
+import { Component, ViewChild, ElementRef }                    from '@angular/core';
+import { StatusBar } from 'ionic-native';
 
 import {
  GoogleMap,
@@ -28,16 +29,21 @@ import { LocalStorage }               from '../../../common/services/local-stora
   providers   : [EstablishmentService]
 })
 export class EstablishmentListPage {
+  @ViewChild(Content)       content     : Content;
+  @ViewChild('contentList') contentList : ElementRef;
+
+
+  public color = 'primary';
   public facebook = '';
-  //public  establishments    : Array<Establishment>;
+  public  establishments    : Array<Establishment>;
   public  queryInput  : QueryInput     = {
     page: 1
   };
-  public showSpinner = false;
+  public showSpinner = true;
 
  //map: GoogleMap;
 
-  public establishments = [
+  /*public establishments = [
     {id: 1, description: 'Establishment 1'},
     {id: 2, description: 'Establishment 2'},
     {id: 3, description: 'Establishment 3'},
@@ -70,18 +76,33 @@ export class EstablishmentListPage {
     {id: 30, description: 'Establishment 30'}
     
   ];
-
+  */
 
   constructor(
+    public  events         : Events,
     public  navCtrl        : NavController,
     public  viewCtrl       : ViewController,
     private $establishment : EstablishmentService,
     private $localStorage  : LocalStorage) {
 
     //this.loadMap();
+    this.query();
   }
 
 
+
+  public query(): void{
+    this.queryInput.page = 1;
+    this.establishments        = null;
+
+    this.$establishment.query(this.queryInput).then(
+      data => {
+        this.establishments    = <Array<Establishment>> data;
+        this.showSpinner = false;
+      });
+
+
+  }
 
 
   //GOOGLE MAPS ---------------------------------------------------------
@@ -181,6 +202,27 @@ loadMap(){
 
   public goEstablishmentSearch(): void{
     this.navCtrl.push(EstablishmentSearchPage, {});
+  }
+
+
+
+
+
+
+
+  // OTHERS -------------------------------------------------
+  public verifyScroll(){
+    let header  = 56;
+    let content = this.contentList.nativeElement.offsetTop;
+    
+    if(this.content.scrollTop.valueOf() - content > 0) {
+      this.color = 'dark';
+      StatusBar.backgroundColorByHexString('#111');
+    }
+    else{
+      this.color = 'primary';
+      StatusBar.backgroundColorByHexString('#a01b1b');
+    }
   }
 
 }

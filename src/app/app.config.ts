@@ -1,9 +1,9 @@
 //import { CloudSettings } from '@ionic/cloud-angular';
 
 export class AppConfig {
-	//public static BASE_URL: string = 'http://localhost:8000/'; 
+	public static BASE_URL: string = 'http://localhost:8000/'; 
 	//public static BASE_URL: string = 'http://192.168.1.107:8000/'; 
-	public static BASE_URL: string = 'http://powerful-reaches-24488.herokuapp.com//public/'; 
+	//public static BASE_URL: string = 'http://powerful-reaches-24488.herokuapp.com//public/'; 
  
 
 	/*ionic.io

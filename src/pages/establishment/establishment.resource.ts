@@ -12,7 +12,7 @@ import { AuthGuardResource }        from '../../common/services/auth-guard-resou
 @Injectable()
 @ResourceParams({
   add2Provides : false,
-  url          : AppConfig.BASE_URL + 'api/client/establishments'
+  url          : AppConfig.BASE_URL + 'api/client/branches'
 })
 export class EstablishmentResource extends AuthGuardResource {
 

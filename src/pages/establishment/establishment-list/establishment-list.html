@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header *ngIf="true">  
-  <ion-navbar color="primary">
+  <ion-navbar [color]="color" #navbar id="navbar">
     <button ion-button color="white" clear menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -57,7 +57,7 @@
 
 
 
-<ion-content style="position: relative">
+<ion-content style="position: relative" (ionScroll)="verifyScroll($event)">
   <div class="spinner main" *ngIf="showSpinner">
     <ion-spinner></ion-spinner>
   </div>
@@ -72,14 +72,14 @@
     
     
 
-          <ion-list style="margin-top: 60vh !important; position: absolute; width: 100%; box-shadow: 0px -3px 10px rgba(0,0,0,0.4)">
+          <ion-list style="margin-top: 60vh !important; position: absolute; width: 100%; box-shadow: 0px -3px 10px rgba(0,0,0,0.4)"  #contentList>
             <ion-item *ngFor="let establishment of establishments">  
               <ion-avatar item-left (tap)="goEstablishmentDetails(establishment.id)">
-                <img src="http://lorempixel.com/100/100/city/">
+                <img [src]="establishment.establishment.data.image" />
               </ion-avatar>
               <div (tap)="goEstablishmentDetails(establishment.id)">
-                <h2>{{ establishment.description }}</h2>
-                <p>5 km</p>
+                <h2>{{ establishment.establishment.data.name }}</h2>
+                <p>{{ establishment.address }}</p>
               </div>
 
               <button ion-button icon-only clear round item-right  (tap)="goOrderWorkflow(establishment.id)" padding>
