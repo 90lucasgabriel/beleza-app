@@ -1,21 +1,22 @@
 <ion-header>  
-  <ion-navbar color="primary">
+  <ion-navbar [color]="color">
 	  <ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="share"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-title id="ionTitle" #ionTitle>{{ title }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content>
+<ion-content  (ionScroll)="verifyScroll($event)">
   <div class="spinner main" *ngIf="showSpinner">
     <ion-spinner></ion-spinner>
   </div>
   
   <ion-fab right bottom *ngIf="!showSpinner"> 
-    <button ion-fab (click)="goOrderWorkflow(1)"><ion-icon name="calendar"></ion-icon></button>
+    <button ion-fab (tap)="goOrderCreate(branch.id)"><ion-icon name="calendar"></ion-icon></button>
   </ion-fab>
 
   <div *ngIf="!showSpinner"  class="margin-bottom-30">
@@ -30,22 +31,25 @@
     </ion-slides>
     
     
-    <div style="margin-top: 240px !important; position: absolute; width: 100%; box-shadow: 0px -3px 10px rgba(0,0,0,0.4); background: #f8f8f8">
+    <div style="margin-top: 240px !important; position: absolute; width: 100%; box-shadow: 0px -3px 10px rgba(0,0,0,0.4); background: #f8f8f8" #contentList>
     <ion-card no-margin style="width: 100%">
          
       <ion-card-header class="primary-color dark-background">
-        <h1 class="primary-color">
-          Nome do Estabelecimento
-        </h1>
-        <p class="primary-color">
-          10 Avaliações
-        </p>
+        <ion-item  class="primary-color dark-background">
+          <ion-avatar item-left>
+            <img [src]="branch?.establishment.data.image" />
+          </ion-avatar>
+          <div>
+            <h1 class="primary-color">{{ branch?.establishment.data.name }}</h1>
+            <p class="primary-color">10 Avaliações</p>
+          </div>
+        </ion-item>
       </ion-card-header>
       
       <ion-card-content class="margin-top-10 margin-bottom-10" style="padding: 0">
         <ion-grid>
           <ion-row>          
-            <ion-col text-center  (click)="goOrderWorkflow(1)">
+            <ion-col text-center (tap)="goOrderCreate(branch.id)">
               <button ion-button icon-only clear round color="dark">
                 <ion-icon name="calendar"></ion-icon>
               </button>
@@ -68,20 +72,24 @@
 
         <hr />
         <p padding>
-          {{ establishment?.description }}
-          Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. Descrição do estabelecimento. 
+          {{ branch?.establishment.data.description }}
+          {{ branch?.establishment.data.description }}
+          {{ branch?.establishment.data.description }}
+          {{ branch?.establishment.data.description }}
+          {{ branch?.establishment.data.description }}
+          {{ branch?.establishment.data.description }}
         </p>
         <hr />
 
         <ion-list>
         <ion-item (click)="showServiceList()">
           <ion-icon item-left name="pin"></ion-icon>
-          Av. Endereço, 100, São Bernardo do Campo - SP - 091902-920
+          {{ branch?.address }}, {{ branch?.city }} - {{ branch?.state }} - {{ branch?.zipcode }}
         </ion-item>
 
         <ion-item>
           <ion-icon item-left name="call"></ion-icon>
-          (11) 93981-2391
+          {{ branch?.phone }}
         </ion-item>
 
         <ion-item>

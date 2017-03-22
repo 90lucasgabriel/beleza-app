@@ -13,29 +13,29 @@ import {
 /*
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 */
-import { QueryInput }                 from '../../../common/models/query-input';
-import { Establishment }              from '../establishment.model';
-import { EstablishmentService }       from '../establishment.service';
+import { QueryInput }          from '../../../common/models/query-input';
+import { Branch }              from '../branch.model';
+import { BranchService }       from '../branch.service';
 
-import { EstablishmentDetailsPage }   from '../establishment-details/establishment-details';
-import { EstablishmentSearchPage }    from '../establishment-search/establishment-search';
-import { OrderWorkflowPage }          from '../../order/order-workflow/order-workflow';
-import { LocalStorage }               from '../../../common/services/local-storage';
+import { BranchDetailsPage }   from '../branch-details/branch-details';
+import { BranchSearchPage }    from '../branch-search/branch-search';
+import { OrderCreatePage }     from '../../order/order-create/order-create';
+import { LocalStorage }        from '../../../common/services/local-storage';
 
 
 @Component({
-  selector    : 'page-establishment-list',
-  templateUrl : 'establishment-list.html',
-  providers   : [EstablishmentService]
+  selector    : 'page-branch-list',
+  templateUrl : 'branch-list.html',
+  providers   : [BranchService]
 })
-export class EstablishmentListPage {
+export class BranchListPage {
   @ViewChild(Content)       content     : Content;
   @ViewChild('contentList') contentList : ElementRef;
 
 
   public color = 'primary';
   public facebook = '';
-  public  establishments    : Array<Establishment>;
+  public  branches    : Array<Branch>;
   public  queryInput  : QueryInput     = {
     page: 1
   };
@@ -43,37 +43,37 @@ export class EstablishmentListPage {
 
  //map: GoogleMap;
 
-  /*public establishments = [
-    {id: 1, description: 'Establishment 1'},
-    {id: 2, description: 'Establishment 2'},
-    {id: 3, description: 'Establishment 3'},
-    {id: 4, description: 'Establishment 4'},
-    {id: 5, description: 'Establishment 5'},
-    {id: 6, description: 'Establishment 6'},
-    {id: 7, description: 'Establishment 7'},
-    {id: 8, description: 'Establishment 8'},
-    {id: 9, description: 'Establishment 9'},
-    {id: 10, description: 'Establishment 10'},
-    {id: 11, description: 'Establishment 11'},
-    {id: 12, description: 'Establishment 12'},
-    {id: 13, description: 'Establishment 13'},
-    {id: 14, description: 'Establishment 14'},
-    {id: 15, description: 'Establishment 15'},
-    {id: 16, description: 'Establishment 16'},
-    {id: 17, description: 'Establishment 17'},
-    {id: 18, description: 'Establishment 18'},
-    {id: 19, description: 'Establishment 19'},
-    {id: 20, description: 'Establishment 20'},
-    {id: 21, description: 'Establishment 21'},
-    {id: 22, description: 'Establishment 22'},
-    {id: 23, description: 'Establishment 23'},
-    {id: 24, description: 'Establishment 24'},
-    {id: 25, description: 'Establishment 25'},
-    {id: 26, description: 'Establishment 26'},
-    {id: 27, description: 'Establishment 27'},
-    {id: 28, description: 'Establishment 28'},
-    {id: 29, description: 'Establishment 29'},
-    {id: 30, description: 'Establishment 30'}
+  /*public branches = [
+    {id: 1, description: 'Branch 1'},
+    {id: 2, description: 'Branch 2'},
+    {id: 3, description: 'Branch 3'},
+    {id: 4, description: 'Branch 4'},
+    {id: 5, description: 'Branch 5'},
+    {id: 6, description: 'Branch 6'},
+    {id: 7, description: 'Branch 7'},
+    {id: 8, description: 'Branch 8'},
+    {id: 9, description: 'Branch 9'},
+    {id: 10, description: 'Branch 10'},
+    {id: 11, description: 'Branch 11'},
+    {id: 12, description: 'Branch 12'},
+    {id: 13, description: 'Branch 13'},
+    {id: 14, description: 'Branch 14'},
+    {id: 15, description: 'Branch 15'},
+    {id: 16, description: 'Branch 16'},
+    {id: 17, description: 'Branch 17'},
+    {id: 18, description: 'Branch 18'},
+    {id: 19, description: 'Branch 19'},
+    {id: 20, description: 'Branch 20'},
+    {id: 21, description: 'Branch 21'},
+    {id: 22, description: 'Branch 22'},
+    {id: 23, description: 'Branch 23'},
+    {id: 24, description: 'Branch 24'},
+    {id: 25, description: 'Branch 25'},
+    {id: 26, description: 'Branch 26'},
+    {id: 27, description: 'Branch 27'},
+    {id: 28, description: 'Branch 28'},
+    {id: 29, description: 'Branch 29'},
+    {id: 30, description: 'Branch 30'}
     
   ];
   */
@@ -82,7 +82,7 @@ export class EstablishmentListPage {
     public  events         : Events,
     public  navCtrl        : NavController,
     public  viewCtrl       : ViewController,
-    private $establishment : EstablishmentService,
+    private $branch        : BranchService,
     private $localStorage  : LocalStorage) {
 
     //this.loadMap();
@@ -93,15 +93,13 @@ export class EstablishmentListPage {
 
   public query(): void{
     this.queryInput.page = 1;
-    this.establishments        = null;
+    this.branches        = null;
 
-    this.$establishment.query(this.queryInput).then(
+    this.$branch.query(this.queryInput).then(
       data => {
-        this.establishments    = <Array<Establishment>> data;
+        this.branches    = <Array<Branch>> data;
         this.showSpinner = false;
       });
-
-
   }
 
 
@@ -188,41 +186,51 @@ loadMap(){
     this.viewCtrl.dismiss();
   }
 
+  public doInfinite(infiniteScroll): void{
+    this.queryInput.page = this.queryInput.page + 1;
+
+    this.$branch.query(this.queryInput).then(
+      data => {
+        this.branches = this.branches.concat(<Array<Branch>> data);
+        infiniteScroll.complete();
+      }
+    );    
+  }
+
+
+
+
+
+
+
 
 
   //NAV ----------------------------------------------------
-  public goEstablishmentDetails(establishmentId: number): void{
-    this.navCtrl.push(EstablishmentDetailsPage, {id: establishmentId});
+  public goBranchDetails(branchId: number): void{
+    this.navCtrl.push(BranchDetailsPage, {id: branchId});
   }
 
-  public goOrderWorkflow(establishmentId: number): void{
-    this.navCtrl.push(OrderWorkflowPage, {id: establishmentId});
-  }
-
-
-  public goEstablishmentSearch(): void{
-    this.navCtrl.push(EstablishmentSearchPage, {});
+  public goOrderCreate(branchId: number): void{
+    this.navCtrl.push(OrderCreatePage, {id: branchId});
   }
 
 
+  public goBranchSearch(): void{
+    this.navCtrl.push(BranchSearchPage, {});
+  }
 
 
 
 
 
-  // OTHERS -------------------------------------------------
-  public verifyScroll(){
-    let header  = 56;
-    let content = this.contentList.nativeElement.offsetTop;
-    
-    if(this.content.scrollTop.valueOf() - content > 0) {
-      this.color = 'dark';
-      StatusBar.backgroundColorByHexString('#111');
-    }
-    else{
-      this.color = 'primary';
-      StatusBar.backgroundColorByHexString('#a01b1b');
-    }
+
+  //VIEW ------------------------------------------------------
+  public ionViewWillLeave(){
+    StatusBar.backgroundColorByHexString('#a01b1b');
+  }
+
+  public ionViewDidEnter(){
+    StatusBar.backgroundColorByHexString('#a01b1b');
   }
 
 }

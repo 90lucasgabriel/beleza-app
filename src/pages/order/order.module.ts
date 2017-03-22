@@ -2,22 +2,22 @@ import { NgModule, ModuleWithProviders }  from '@angular/core';
 import { IonicModule }                    from 'ionic-angular';
 
 import { OrderListPage }                  from './order-list/order-list';
-import { OrderWorkflowPage }              from './order-workflow/order-workflow';
+import { OrderCreatePage }                from './order-create/order-create';
 
 import { OrderResource }                  from './order.resource';
 
 @NgModule({
   imports:      [
     IonicModule.forRoot(OrderListPage),
-    IonicModule.forRoot(OrderWorkflowPage)
+    IonicModule.forRoot(OrderCreatePage)
   ],
   declarations: [
     OrderListPage,
-    OrderWorkflowPage
+    OrderCreatePage
   ],
   exports: [
     OrderListPage,
-    OrderWorkflowPage
+    OrderCreatePage
   ]
 })
 export class OrderModule {

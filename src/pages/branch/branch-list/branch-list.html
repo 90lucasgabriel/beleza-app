@@ -1,5 +1,5 @@
 <!--
-  Generated template for the EstablishmentList page.
+  Generated template for the BranchList page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
@@ -57,7 +57,7 @@
 
 
 
-<ion-content style="position: relative" (ionScroll)="verifyScroll($event)">
+<ion-content style="position: relative">
   <div class="spinner main" *ngIf="showSpinner">
     <ion-spinner></ion-spinner>
   </div>
@@ -72,21 +72,26 @@
     
     
 
-          <ion-list style="margin-top: 60vh !important; position: absolute; width: 100%; box-shadow: 0px -3px 10px rgba(0,0,0,0.4)"  #contentList>
-            <ion-item *ngFor="let establishment of establishments">  
-              <ion-avatar item-left (tap)="goEstablishmentDetails(establishment.id)">
-                <img [src]="establishment.establishment.data.image" />
+          <ion-list style="margin-top: 60vh !important; position: absolute; width: 100%; box-shadow: 0px -3px 10px rgba(0,0,0,0.4); background: #F8F8F8; margin-bottom: 0"  #contentList>
+            <ion-item *ngFor="let branch of branches">  
+              <ion-avatar item-left (tap)="goBranchDetails(branch.id)">
+                <img [src]="branch.establishment.data.image" />
               </ion-avatar>
-              <div (tap)="goEstablishmentDetails(establishment.id)">
-                <h2>{{ establishment.establishment.data.name }}</h2>
-                <p>{{ establishment.address }}</p>
+              <div (tap)="goBranchDetails(branch.id)">
+                <h2>{{ branch.establishment.data.name }}</h2>
+                <p>{{ branch.address }}, {{ branch.city }}</p>
               </div>
 
-              <button ion-button icon-only clear round item-right  (tap)="goOrderWorkflow(establishment.id)" padding>
+              <button ion-button icon-only clear round item-right  (tap)="goOrderCreate(branch.id)" padding>
                     <ion-icon name="calendar" color="dark"></ion-icon>
                   </button>
             </ion-item>
+
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+              <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
           </ion-list>
+          
         
 
   </div>

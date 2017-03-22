@@ -5,7 +5,7 @@ import { Observable }               from 'rxjs';
 
 import { AppConfig }                from '../../app/app.config';
 import { QueryInput }               from '../../common/models/query-input';
-import { Establishment }            from './establishment.model';
+import { Branch }            from './branch.model';
 
 import { AuthGuardResource }        from '../../common/services/auth-guard-resource';
 
@@ -14,7 +14,7 @@ import { AuthGuardResource }        from '../../common/services/auth-guard-resou
   add2Provides : false,
   url          : AppConfig.BASE_URL + 'api/client/branches'
 })
-export class EstablishmentResource extends AuthGuardResource {
+export class BranchResource extends AuthGuardResource {
 
   constructor(http: Http, injector: Injector){
     super(http, injector);
@@ -24,18 +24,18 @@ export class EstablishmentResource extends AuthGuardResource {
     isArray: true,
     params: {'include': 'images'}
   })
-  query: ResourceMethod<QueryInput, Array<Establishment>>;
+  query: ResourceMethod<QueryInput, Array<Branch>>;
 
   @ResourceAction({
     path: '/{!id}',
     params: {'include': 'images'}
   })
-  get: ResourceMethod<{id: number}, Establishment>;
+  get: ResourceMethod<{id: number}, Branch>;
 
   @ResourceAction({
     isArray: true,
     path: '/search/{!data}',
     params: {'include': 'images'}
   })
-  search: ResourceMethod<{data: string}, Array<Establishment>>;
+  search: ResourceMethod<{data: string}, Array<Branch>>;
 }

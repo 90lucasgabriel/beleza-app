@@ -8,7 +8,7 @@ import { LocalStorage }               from '../common/services/local-storage';
 import { AuthGuardResource }          from '../common/services/auth-guard-resource';
 
 import { AccountModule }              from '../pages/account/account.module';
-import { EstablishmentModule }        from '../pages/establishment/establishment.module';
+import { BranchModule }        from '../pages/branch/branch.module';
 import { OrderModule }                from '../pages/order/order.module';
 import { ServiceModule }              from '../pages/service/service.module';
 import { UserModule }                 from '../pages/user/user.module';
@@ -26,7 +26,7 @@ import { MyApp }                      from './app.component';
 
     ResourceModule.forRoot(),
     AccountModule.forRoot(),
-    EstablishmentModule.forRoot(),
+    BranchModule.forRoot(),
     OrderModule.forRoot(),
     ServiceModule.forRoot(),
     UserModule.forRoot(),

@@ -1,9 +1,11 @@
 import { NavController, ViewController }             from 'ionic-angular';
 import { Component }                from '@angular/core';
+import { StatusBar }                from 'ionic-native';
 
 import { QueryInput }               from '../../../common/models/query-input';
 import { User }                     from '../user.model';
 import { UserService }              from '../user.service';
+
 
 import { LocalStorage }             from '../../../common/services/local-storage';
 
@@ -75,6 +77,14 @@ export class UserListPage {
 
 
 
+  //VIEW ------------------------------------------------------
+  public ionViewWillLeave(){
+    StatusBar.backgroundColorByHexString('#a01b1b');
+  }
+
+  public ionViewWillEnter(){
+    StatusBar.backgroundColorByHexString('#CCC');
+  }
 
 
 }

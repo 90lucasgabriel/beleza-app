@@ -1,5 +1,6 @@
 import { Component } 		            from '@angular/core';
 import { NavController, ViewController } 	          from 'ionic-angular';
+import { StatusBar }                from 'ionic-native';
 
 
 import { QueryInput }               from '../../../common/models/query-input';
@@ -75,7 +76,6 @@ export class ServiceListPage {
 
 
 
-
   //COMPONENTS ----------------------------------------------------------
   public dismiss() {
     this.viewCtrl.dismiss();
@@ -90,6 +90,19 @@ export class ServiceListPage {
 
   public goServiceSearch(): void{
     this.navCtrl.push(ServiceSearchPage, {});
+  }
+
+
+
+
+
+  //VIEW ------------------------------------------------------
+  public ionViewWillLeave(){
+    StatusBar.backgroundColorByHexString('#a01b1b');
+  }
+
+  public ionViewWillEnter(){
+    StatusBar.backgroundColorByHexString('#CCC');
   }
 
 }

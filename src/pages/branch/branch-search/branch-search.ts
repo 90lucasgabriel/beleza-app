@@ -2,22 +2,22 @@ import { Component, ViewChild } 	  from '@angular/core';
 import { NavController }            from 'ionic-angular';
 
 import { QueryInput }               from '../../../common/models/query-input';
-import { Establishment }            from '../establishment.model';
-import { EstablishmentService }      from '../establishment.service';
+import { Branch }            from '../branch.model';
+import { BranchService }      from '../branch.service';
 
-import { EstablishmentDetailsPage }  from '../establishment-details/establishment-details';
+import { BranchDetailsPage }  from '../branch-details/branch-details';
 
 
 @Component({
-  selector    : 'page-establishment-search',
-  templateUrl : 'establishment-search.html',
-  providers   : [EstablishmentService]
+  selector    : 'page-branch-search',
+  templateUrl : 'branch-search.html',
+  providers   : [BranchService]
 })
-export class EstablishmentSearchPage {
+export class BranchSearchPage {
   @ViewChild('searchbar') myInput;
 
-  public  establishments   : Array<Establishment>;
-  public  originalServices : Array<Establishment>;
+  public  branches   : Array<Branch>;
+  public  originalServices : Array<Branch>;
   public  queryInput       : QueryInput     = {
     page: 1
   };
@@ -26,14 +26,14 @@ export class EstablishmentSearchPage {
 
   constructor(
   	public  navCtrl        : NavController,
-  	private $establishment : EstablishmentService) {
+  	private $branch : BranchService) {
   }
 
 
   //FUNCTIONS --------------------------------------
   public query(): void{
     this.queryInput.page = 1;
-    this.establishments        = null;
+    this.branches        = null;
 
   }
   
@@ -46,11 +46,11 @@ export class EstablishmentSearchPage {
     }
 
     if (term.trim() === '' || term.trim().length < 3) {
-      this.establishments = this.originalServices;
+      this.branches = this.originalServices;
     } else {
-      this.$establishment.search(params).then(
+      this.$branch.search(params).then(
       data => {
-        this.establishments    = <Array<Establishment>> data;
+        this.branches    = <Array<Branch>> data;
         this.showSpinner = false;
       });
     }
@@ -72,9 +72,9 @@ export class EstablishmentSearchPage {
   public doInfinite(infiniteScroll): void {
   	this.queryInput.page = this.queryInput.page + 1;
 
-  	this.$establishment.query(this.queryInput).then(
+  	this.$branch.query(this.queryInput).then(
   		data => {
-  			this.establishments = this.establishments.concat(<Array<Establishment>> data);
+  			this.branches = this.branches.concat(<Array<Branch>> data);
   			infiniteScroll.complete();
   		}
     );  	
@@ -86,8 +86,8 @@ export class EstablishmentSearchPage {
 
 
   //NAV ----------------------------------------------------
-  public goServiceDetails(establishmentId: number): void{
-    this.navCtrl.push(EstablishmentDetailsPage, {id: establishmentId});
+  public goServiceDetails(branchId: number): void{
+    this.navCtrl.push(BranchDetailsPage, {id: branchId});
   }
 
 }
