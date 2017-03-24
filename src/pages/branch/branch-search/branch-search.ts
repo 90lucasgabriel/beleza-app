@@ -1,11 +1,12 @@
 import { Component, ViewChild } 	  from '@angular/core';
-import { NavController }            from 'ionic-angular';
+import { NavController, ViewController }            from 'ionic-angular';
+import { StatusBar }                from 'ionic-native';
 
 import { QueryInput }               from '../../../common/models/query-input';
-import { Branch }            from '../branch.model';
-import { BranchService }      from '../branch.service';
+import { Branch }                   from '../branch.model';
+import { BranchService }            from '../branch.service';
 
-import { BranchDetailsPage }  from '../branch-details/branch-details';
+import { BranchDetailsPage }        from '../branch-details/branch-details';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { BranchDetailsPage }  from '../branch-details/branch-details';
   providers   : [BranchService]
 })
 export class BranchSearchPage {
-  @ViewChild('searchbar') myInput;
+  @ViewChild('searchbar') searchbar;
 
   public  branches   : Array<Branch>;
   public  originalServices : Array<Branch>;
@@ -25,8 +26,9 @@ export class BranchSearchPage {
   public showSpinner = true;
 
   constructor(
-  	public  navCtrl        : NavController,
-  	private $branch : BranchService) {
+    public  viewCtrl : ViewController,
+    public  navCtrl  : NavController,
+    private $branch  : BranchService) {
   }
 
 
@@ -63,12 +65,6 @@ export class BranchSearchPage {
 
 
   //COMPONENTS ----------------------------------------
-  ionViewDidEnter(): void{
-     setTimeout(() => {
-      this.myInput.setFocus();
-    }, 150);     
-  }
-
   public doInfinite(infiniteScroll): void {
   	this.queryInput.page = this.queryInput.page + 1;
 
@@ -90,4 +86,32 @@ export class BranchSearchPage {
     this.navCtrl.push(BranchDetailsPage, {id: branchId});
   }
 
+  public dismiss():void {
+    this.viewCtrl.dismiss();
+  }
+
+
+
+
+
+
+
+
+  //VIEW ------------------------------------------------------
+  public ionViewWillEnter(){
+    StatusBar.backgroundColorByHexString('#CCC');
+  }
+
+  public ionViewDidEnter(){
+    setTimeout(() => {
+      this.searchbar.setFocus();
+    }, 150);   
+  }
+
+  public ionViewWillLeave(){
+    StatusBar.backgroundColorByHexString('#a01b1b');
+  }
+
+
+  
 }

@@ -9,7 +9,6 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content  (ionScroll)="verifyScroll($event)">
   <div class="spinner main" *ngIf="showSpinner">
     <ion-spinner></ion-spinner>
@@ -94,7 +93,7 @@
 
         <ion-item>
           <ion-icon item-left name="globe"></ion-icon>
-          http://www.estabelecimento.com.br
+          {{ branch?.establishment.data.site}}
         </ion-item>
       </ion-list>
       </ion-card-content>

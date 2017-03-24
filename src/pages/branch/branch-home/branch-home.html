@@ -1,0 +1,30 @@
+<ion-header *ngIf="true">  
+  <ion-navbar [color]="color" #navbar id="navbar">
+    <button ion-button color="white" clear menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="goBranchSearch()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content>
+  <div class="spinner main" *ngIf="showSpinner">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="!showSpinner">
+     <ion-tabs #tabs>
+      <ion-tab tabIcon="compass"  tabTitle="Próximos"   [root]="nearTab"></ion-tab>
+      <ion-tab tabIcon="heart"    tabTitle="Favoritos"  [root]="favoritesTab"></ion-tab>
+      <ion-tab tabIcon="history"  tabTitle="Histórico"  [root]="tab3" *ngIf="false"></ion-tab>
+    </ion-tabs>
+  </div> 
+    
+</ion-content>

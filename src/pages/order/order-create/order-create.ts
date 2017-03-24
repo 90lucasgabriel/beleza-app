@@ -1,5 +1,5 @@
 import { Component } 		            from '@angular/core';
-import { NavController, NavParams, ModalController } 	          from 'ionic-angular';
+import { ViewController, NavController, NavParams, ModalController } 	          from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 import { QueryInput }               from '../../../common/models/query-input';
@@ -24,12 +24,13 @@ export class OrderCreatePage {
   };
   public id         : number;
   public branch     : Branch; 
+  public isModal    : boolean;
   public showSpinner: boolean = true;
 
-
   constructor(
-    public  navCtrl       : NavController,
     private modalCtrl     : ModalController,
+    private viewCtrl      : ViewController,
+    public  navCtrl       : NavController,
     private navParams     : NavParams,
     private $branch       : BranchService,
     private $localStorage : LocalStorage) {
@@ -69,13 +70,17 @@ export class OrderCreatePage {
     modal.present(); 
   }
 
+  public dismiss():void {
+    this.viewCtrl.dismiss();
+  }
 
 
 
 
   //VIEW ------------------------------------------------------
   public ionViewWillEnter(){
-    this.id = this.navParams.get('id');
+    this.id      = this.navParams.get('id');
+    this.isModal = this.navParams.get('isModal');
     this.get(this.id);
 
     StatusBar.backgroundColorByHexString('#a01b1b');

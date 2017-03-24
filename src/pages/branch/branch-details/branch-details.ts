@@ -1,8 +1,8 @@
 import { Component, ViewChild, ElementRef, NgZone } 					        from '@angular/core';
-import { NavController, NavParams, Content } 	from 'ionic-angular';
+import { App, NavController, ViewController, NavParams, Content } 	from 'ionic-angular';
 import { StatusBar }                  from 'ionic-native';
 
-import { Branch }                     from '../branch.model';
+import { Branch, BranchImage }        from '../branch.model';
 import { BranchService }  	          from '../branch.service';
 
 import { OrderCreatePage }            from '../../order/order-create/order-create';
@@ -24,16 +24,12 @@ export class BranchDetailsPage {
   public id         : number;
   public branch     : Branch; 
   public showSpinner: boolean = true;
-  public pictures = [
-    {id:1 , url: "http://lorempixel.com/300/300/city/"},
-    {id:2 , url: "http://lorempixel.com/300/300/city/"},
-    {id:3 , url: "http://lorempixel.com/300/300/city/"},
-    {id:4 , url: "http://lorempixel.com/300/300/city/"},
-    {id:5 , url: "http://lorempixel.com/300/300/city/"}
-  ];
+  public pictures   : Array<BranchImage>;
 
   constructor(
+  private app       : App,
   private zone      : NgZone,
+  public  viewCtrl  : ViewController,
   public  navCtrl   : NavController,
   private navParams : NavParams,
   private $branch   : BranchService) {  	
@@ -50,7 +46,7 @@ export class BranchDetailsPage {
     this.$branch.get(params).then(
       data => {
         this.branch     = <Branch> data;
-        this.pictures    = this.pictures;//this.branch.images.data;
+        this.pictures    = this.branch.images.data;
         this.showSpinner = false;
       });
     
@@ -60,11 +56,14 @@ export class BranchDetailsPage {
 
 
 
-  // COMPONENTS -------------------------------------------
+  // NAV -------------------------------------------
   public goOrderCreate(branchId: number): void{
-    this.navCtrl.push(OrderCreatePage, {id: branchId});
+    this.app.getRootNav().push(OrderCreatePage, {id: branchId});
   }
 
+  public dismiss():void {
+    this.viewCtrl.dismiss();
+  }
 
 
 
@@ -108,7 +107,7 @@ export class BranchDetailsPage {
 
 
   //VIEW ------------------------------------------------------
-  public ionViewDidEnter(){
+  public ionViewWillEnter(){
     this.id = this.navParams.get('id');
     this.get(this.id);
 

@@ -124,7 +124,7 @@ export class UserLoginPage {
 
 
   //COMPONENTS ---------------------------------------------
-  public dismiss() {
+  public dismiss():void {
 	this.viewCtrl.dismiss();
   }
 

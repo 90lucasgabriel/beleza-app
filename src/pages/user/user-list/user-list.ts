@@ -1,5 +1,5 @@
 import { NavController, ViewController }             from 'ionic-angular';
-import { Component }                from '@angular/core';
+import { Component, ViewChild }                from '@angular/core';
 import { StatusBar }                from 'ionic-native';
 
 import { QueryInput }               from '../../../common/models/query-input';
@@ -16,6 +16,8 @@ import { LocalStorage }             from '../../../common/services/local-storage
   providers   : []
 })
 export class UserListPage {
+  @ViewChild('searchbar') searchbar;
+
   public facebook = '';
   public  queryInput  : QueryInput     = {
     page: 1
@@ -78,13 +80,20 @@ export class UserListPage {
 
 
   //VIEW ------------------------------------------------------
+  public ionViewWillEnter(){
+    StatusBar.backgroundColorByHexString('#CCC');
+  }
+  
+  public ionViewDidEnter(){
+    /*setTimeout(() => {
+      this.searchbar.setFocus();
+    }, 150);   */
+  }
+
   public ionViewWillLeave(){
     StatusBar.backgroundColorByHexString('#a01b1b');
   }
 
-  public ionViewWillEnter(){
-    StatusBar.backgroundColorByHexString('#CCC');
-  }
 
 
 }

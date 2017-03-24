@@ -27,6 +27,22 @@ ion-nav .scroll-content{
 	border-bottom: 2px solid #CCC;
 }
 
+ion-header .col{
+	padding: 0 !important;
+}
+
+ion-header ion-col ion-title div.toolbar-title{
+	padding: 0 !important;
+}
+
+ion-header ion-searchbar{
+	padding: 0 !important;
+}
+
+ion-header .col[col-10] ion-card{
+	margin-bottom: 0 !important;
+}
+
 
 /*MARGIN ------------------------------------------*/
 .margin-0{
@@ -40,6 +56,15 @@ ion-nav .scroll-content{
 .margin-10{
 	margin           : 10px !important;
 }
+
+.margin-top-1{
+	margin-top       : 1px !important;
+}
+
+.margin-top-8{
+	margin-top       : 8px !important;
+}
+
 
 .margin-top-10{
 	margin-top       : 10px !important;
@@ -59,6 +84,10 @@ ion-nav .scroll-content{
 
 .margin-bottom-30{
 	margin-bottom    : 30px !important;
+}
+
+.margin-left-4{
+	margin-left      : 4px !important;
 }
 
 .padding-top-0{

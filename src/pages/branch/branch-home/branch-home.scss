@@ -1,0 +1,42 @@
+page-branch-list {
+
+	.card-md{
+		margin     : 5px !important;
+		width      : auto !important;
+		position   : relative;
+	}
+
+	ion-card img , ion-card ion-img{
+		min-height : 100px !important;
+		max-height : 170px !important;
+	}
+
+	div.spinner{
+  		height     : 120px;
+	}
+
+	ion-card .spinner-md-crescent circle{
+		stroke     : #FFF !important;
+	}
+
+
+
+	/*SEARCH BAR*/
+	.searchbar-input{
+		background : transparent !important;
+		box-shadow : none !important;
+		padding    : 0 !important;
+	}
+
+	.searchbar-search-icon{
+		display    : none;
+	}
+
+
+
+
+
+	ion-item .col{
+		padding    : 0;
+	}
+}

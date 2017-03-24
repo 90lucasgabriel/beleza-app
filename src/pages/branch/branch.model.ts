@@ -17,14 +17,13 @@ export interface BranchDetails{
 	id          : number,
 	name        : string,
 	description : string,
-	image       : string
+	image       : string,
+	site        : string
 }
 
 export interface BranchImage{
 	id          : number,
 	url         : string,
 	description : string,
-	index       : number,
-	created_at  : Object,
-	updated_at  : Object
+	index       : number
 }

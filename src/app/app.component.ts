@@ -6,9 +6,10 @@ import { LocalStorage }            from '../common/services/local-storage';
 import { UserService }             from '../pages/user/user.service';
 
 import { AccountListPage }         from '../pages/account/account-list/account-list';
-import { BranchListPage }   from '../pages/branch/branch-list/branch-list';
+import { BranchListPage }          from '../pages/branch/branch-list/branch-list';
+import { BranchHomePage }          from '../pages/branch/branch-home/branch-home';
 import { UserLoginPage }           from '../pages/user/user-login/user-login';
-import { OrderCreatePage }       from '../pages/order/order-create/order-create';
+import { OrderCreatePage }         from '../pages/order/order-create/order-create';
 import { ServiceListPage }         from '../pages/service/service-list/service-list';
 
 
@@ -20,8 +21,8 @@ import { ServiceListPage }         from '../pages/service/service-list/service-l
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage            : any    = BranchListPage;
-  pages               : Array<{title: string, component: any}>;
+  rootPage            : any    = BranchHomePage;
+  pages               : Array<{title: string, component: any, params: Object}>;
   public userPicture  : string = 'http://knowledge-commons.com/static/assets/images/avatar.png';
   public userEmail    : string = 'Entre com sua conta';
   public userName     : string = '';
@@ -68,9 +69,9 @@ export class MyApp {
 
     if(this.$user.isLogged() || value){
       this.pages = [
-        { title: 'Workflow', component: OrderCreatePage},
-        { title: 'Serviços', component: ServiceListPage},
-        { title: 'Sair',     component: null},
+        { title: 'Salões de Beleza',  component: BranchHomePage, params: {tab: 0}},
+        { title: 'Favoritos',         component: BranchHomePage, params: {tab: 1}},
+        { title: 'Sair',              component: null,           params: null},
       ];
 
       this.$user.getByToken().then(
@@ -89,8 +90,8 @@ export class MyApp {
     }
     else{
       this.pages = [
-        { title: 'Workflow', component: OrderCreatePage},
-        { title: 'Serviços', component: ServiceListPage},
+        { title: 'Salões de Beleza',  component: BranchHomePage, params: {tab: 0}},
+        { title: 'Favoritos',         component: BranchHomePage, params: {tab: 1}}
       ]; 
 
       this.userEmail   = 'Entre com sua conta';
@@ -115,7 +116,9 @@ export class MyApp {
       this.$user.logout();
     }
     else{
-      this.nav.setRoot(page.component);
+      if(page.params!=null){
+        this.nav.setRoot(page.component, {params: page.params});
+      }
     }
   }
 
