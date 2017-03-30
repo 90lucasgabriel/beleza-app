@@ -84,7 +84,7 @@ export class BranchDetailsPage {
     if(result > 0) {
       this.zone.run(() => {
         if(result > 55){
-          this.title = this.branch.establishment.data.name;
+          this.title = this.branch.company.data.name;
           this.hasBorder = 'no-border';
         }
         else{

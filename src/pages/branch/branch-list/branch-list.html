@@ -20,10 +20,10 @@
   <ion-list #contentList *ngIf="!showSpinner"> 
     <ion-item *ngFor="let branch of branches">  
       <ion-avatar item-left (tap)="goBranchDetails(branch.id)">
-        <img [src]="branch.establishment.data.image" />
+        <img [src]="branch.company.data.image" />
       </ion-avatar>
       <div (tap)="goBranchDetails(branch.id)">
-        <h2>{{ branch.establishment.data.name }}</h2>
+        <h2>{{ branch.company.data.name }}</h2>
         <p>{{ branch.address }}, {{ branch.city }}</p>
       </div>
 
