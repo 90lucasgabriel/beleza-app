@@ -1,0 +1,47 @@
+<ion-header>  
+  <ion-navbar color="primary">
+    <ion-title id="ionTitle" #ionTitle>{{ branch?.company.data.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content style="position: relative;">
+    
+    <ion-card>
+        <ion-item (tap)="showServiceList()" padding>
+          <ion-icon item-left name="cut" color="dark"></ion-icon>
+          Serviço
+          <ion-icon item-right name="arrow-dropright" color="dark"></ion-icon>
+        </ion-item>
+      </ion-card>
+      
+      <ion-card>
+        <div style="text-align: center;" (tap)="showUserProfessionalList()">
+          <img src="assets/img/avatar.png" style="width: 120px; border-radius: 100%; margin: 0 auto; margin-top: 20px;">
+          <ion-item padding class="padding-top-0">
+            <ion-icon item-left large name="contact" color="dark"></ion-icon>
+            Profissional
+            <ion-icon item-right name="arrow-dropright" color="dark"></ion-icon>
+          </ion-item>
+        </div>
+      </ion-card>
+      
+
+      <ion-card>
+        <ion-item padding>
+          <ion-icon item-left large name="time" color="dark"></ion-icon>
+          Horário
+          <p item-right>10:00</p>
+        </ion-item>
+      </ion-card>
+
+      
+    <ion-footer no-border>   
+      <div padding>
+        <button ion-button block>Agendar</button>
+      </div>
+      
+    </ion-footer>
+
+</ion-content>
