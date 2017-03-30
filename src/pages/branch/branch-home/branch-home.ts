@@ -1,11 +1,13 @@
 import { NavController, ViewController, ModalController, Tabs, NavParams }      from 'ionic-angular';
-import { Component, ViewChild }           from '@angular/core';
-import { StatusBar }           from 'ionic-native';
+import { Component, ViewChild }      from '@angular/core';
+import { StatusBar }                 from 'ionic-native';
 
-import { BranchListPage }      from '../branch-list/branch-list';
-import { BranchSearchPage }    from '../branch-search/branch-search';
-import { OrderCreatePage }     from '../../order/order-create/order-create';
-import { LocalStorage }        from '../../../common/services/local-storage';
+import { BranchListPage }            from '../branch-list/branch-list';
+import { BranchListFavoritesPage }   from '../branch-list-favorites/branch-list-favorites';
+import { BranchSearchPage }          from '../branch-search/branch-search';
+import { OrderCreatePage }           from '../../order/order-create/order-create';
+import { OrderListPage }             from '../../order/order-list/order-list';
+import { LocalStorage }              from '../../../common/services/local-storage';
 
 
 @Component({
@@ -19,6 +21,7 @@ export class BranchHomePage {
   public showSpinner  : boolean = false;
   public nearTab      : any;
   public favoritesTab : any;
+  public schedulesTab : any;
   public activeTab    : string;
   public color        : string  = 'primary';
 
@@ -30,8 +33,8 @@ export class BranchHomePage {
     ) {
 
     this.nearTab           = BranchListPage;
-    this.favoritesTab      = BranchListPage;
-    //this.tab3 = BranchListPage;
+    this.favoritesTab      = BranchListFavoritesPage;
+    this.schedulesTab      = OrderListPage;
     this.query();
   }
 

@@ -33,6 +33,10 @@ export class OrderService {
 
 
   //FUNCTIONS -----------------------------------------------------
+  public query(){
+
+  }
+  
   public get(id): Promise<Order>{
     return new Promise<Order>( 
       (resolve, reject) => {

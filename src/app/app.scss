@@ -43,6 +43,26 @@ ion-header .col[col-10] ion-card{
 	margin-bottom: 0 !important;
 }
 
+.center-content > * {
+	top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    position: absolute !important;
+    margin:0 auto;
+    width:100%;
+}
+
+.font-size-100{
+	font-size: 100px;
+}
+
+.color-grey{
+	color: #AAA;
+}
+
 
 /*MARGIN ------------------------------------------*/
 .margin-0{

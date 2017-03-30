@@ -18,11 +18,11 @@ export class BranchDetailsPage {
 
   public color      = 'primary';
   public title      = '';
-  public opacity    = 'style= "opacity: 0"';
   public hasBorder  = '';
 
   public id         : number;
   public branch     : Branch; 
+  public isFavorite : boolean;
   public showSpinner: boolean = true;
   public pictures   : Array<BranchImage>;
 

@@ -19,16 +19,17 @@
 
   <div *ngIf="!isLogged" class="center-content text-center">
     <div>
-      <p><ion-icon name="calendar" class="font-size-100 color-grey"></ion-icon></p>
+      <p><ion-icon name="heart" class="font-size-100 color-grey"></ion-icon></p>
       <p class="color-grey">
-        Entre em sua conta para ver os agendamentos
-      </p> 
+        Entre em sua conta para ver os favoritos
+      </p>
       <button ion-button outline (tap)="openLogin()">Login ou Registrar-se</button>
     </div>
   </div>
 
+  
 
-  <div *ngIf="!showSpinner && isLogged"><!-- If results == 0 -->
+  <div *ngIf="!showSpinner && isLogged">
     
     <!-- If results == 0 -->
     <div *ngIf="branches.length==0" class="center-content text-center">
@@ -62,7 +63,6 @@
       </ion-infinite-scroll>
     
     </ion-list>
-
   </div>
 
 </ion-content>

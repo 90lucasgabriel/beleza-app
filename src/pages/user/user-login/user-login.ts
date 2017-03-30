@@ -38,22 +38,20 @@ export class UserLoginPage {
 		public  loadingCtrl   : LoadingController,
 		private $localStorage : LocalStorage,
 		private $user         : UserService) {
-  	StatusBar.backgroundColorByHexString('#333');
-			this.messages= this.$localStorage.get('user');
-			
-			//Cria o evento que verifica se o usuário está logado
-			this.events.subscribe('user:login', (value) =>{
-				if(value===true){
-					this.loader.dismiss();
-					this.dismiss();
-				}
-			});
+  	
+	this.messages= this.$localStorage.get('user');
+	
+	//Cria o evento que verifica se o usuário está logado
+	this.events.subscribe('user:login', (value) =>{
+		this.loader.dismiss();
+		if(value===true){
+			this.dismiss();
+		}
+	});
   }
 
 
 	public login(data): void {
-		//this.showSpinner = true;
-		//console.log(data);
 		this.showLoading();
 		this.$user.login(data).then(
 			response => {
@@ -103,7 +101,7 @@ export class UserLoginPage {
 	}
 
 	public loginFacebook(): void{
-			this.showLoading();
+		this.showLoading();
 	  	this.$user.loginFacebook().then(
 	  		login => {
 	  			//this.dismiss();
@@ -142,11 +140,6 @@ export class UserLoginPage {
     this.loader.present();
   }
 
-  public ionViewWillLeave(){
-  	StatusBar.backgroundColorByHexString('#a01b1b');
-  	//StatusBar.backgroundColorByHexString('#bc1c1c');
-
-  }
 
 
 
@@ -156,6 +149,18 @@ export class UserLoginPage {
   	this.navCtrl.pop();
   }
 
+
+
+
+
+  //VIEW ------------------------------------------------------
+  public ionViewWillEnter(){
+    StatusBar.backgroundColorByHexString('#333');
+  }
+
+  public ionViewWillLeave(){
+    StatusBar.backgroundColorByHexString('#a01b1b');
+  }
 
 
 

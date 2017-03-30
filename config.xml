@@ -61,7 +61,7 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.2" />
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
-        <variable name="APP_ID" value="267211200394884" />
-        <variable name="APP_NAME" value="Beleza Hora Certa" />
+        <variable name="APP_ID" value="1208961229216875" />
+        <variable name="APP_NAME" value="belezaHoraCerta" />
     </plugin>
 </widget>

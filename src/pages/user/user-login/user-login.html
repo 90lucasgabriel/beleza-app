@@ -29,81 +29,83 @@
   </div>
 
   
-  <!-- FORMS LOGIN/REGISTER -->
-  <div class="forms">
-    <!-- SOCIAL -->
-    <ion-grid>
-      <ion-row wrap>
-          <button ion-button block icon-left *ngIf="false"
-            (click)="logoutFacebook()">
-            Logout
-          </button>
-        <ion-col >
-          <button ion-button block icon-left color="blue"
-            (click)="loginFacebook()">
-            <ion-icon name="logo-facebook" pull-left></ion-icon>
-            Facebook
-          </button>
-        </ion-col>
+  <div class="center-content text-center">
+    <!-- FORMS LOGIN/REGISTER -->
+    <div class="forms">
+      <!-- SOCIAL -->
+      <ion-grid>
+        <ion-row wrap>
+            <button ion-button block icon-left *ngIf="false"
+              (click)="logoutFacebook()">
+              Logout
+            </button>
+          <ion-col >
+            <button ion-button block icon-left color="blue"
+              (click)="loginFacebook()">
+              <ion-icon name="logo-facebook" pull-left></ion-icon>
+              Facebook
+            </button>
+          </ion-col>
 
-        <ion-col width-50 *ngIf="false">
-          <button ion-button block icon-left color="danger">
-            <ion-icon name="logo-google" pull-left></ion-icon>
-            Google
-          </button>
-        </ion-col>
+          <ion-col width-50 *ngIf="false">
+            <button ion-button block icon-left color="danger">
+              <ion-icon name="logo-google" pull-left></ion-icon>
+              Google
+            </button>
+          </ion-col>
 
-      </ion-row>
-    </ion-grid>
+        </ion-row>
+      </ion-grid>
 
-    <div class="white">
-      <h3 style="margin-top: 20px">ou</h3>
-    </div>
-
-
-
-    <!-- LOCAL -->
-    <ion-item>
-      <ion-label floating color="white">Email</ion-label>
-      <ion-input type="email" color="white"  
-        [(ngModel)]="loginData.username"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating  color="white">Senha</ion-label>
-      <ion-input type="password" color="white" 
-        [(ngModel)]="loginData.password"></ion-input>
-    </ion-item>
-
-
-
-    <div [ngSwitch]="action">
-  
-      <!-- IF LOGIN -->
-      <div *ngSwitchCase="'login'">
-        <button ion-button full clear large color="white" padding margin 
-          (click)="login(loginData)">
-          Login
-        </button>
+      <div class="white">
+        <h3 style="margin-top: 20px">ou</h3>
       </div>
 
 
-      <!-- IF REGISTER -->
-      <div *ngSwitchCase="'register'">
-        <ion-item>
-          <ion-label floating  color="white">Confirmar Senha</ion-label>
-          <ion-input type="password" color="white" 
-            [(ngModel)]="loginData.passwordConfirm"></ion-input>
-        </ion-item>
-        
-        <button ion-button full large clear color="white" padding margin
-          (click)="register(loginData)" padding>
-          Registrar
-        </button>
+
+      <!-- LOCAL -->
+      <ion-item>
+        <ion-label floating color="white">Email</ion-label>
+        <ion-input type="email" color="white"  
+          [(ngModel)]="loginData.username"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating  color="white">Senha</ion-label>
+        <ion-input type="password" color="white" 
+          [(ngModel)]="loginData.password"></ion-input>
+      </ion-item>
+
+
+
+      <div [ngSwitch]="action">
+    
+        <!-- IF LOGIN -->
+        <div *ngSwitchCase="'login'">
+          <button ion-button full clear large color="white" padding margin 
+            (click)="login(loginData)">
+            Login
+          </button>
+        </div>
+
+
+        <!-- IF REGISTER -->
+        <div *ngSwitchCase="'register'">
+          <ion-item>
+            <ion-label floating  color="white">Confirmar Senha</ion-label>
+            <ion-input type="password" color="white" 
+              [(ngModel)]="loginData.passwordConfirm"></ion-input>
+          </ion-item>
+          
+          <button ion-button full large clear color="white" padding margin
+            (click)="register(loginData)" padding>
+            Registrar
+          </button>
+        </div>
+    
       </div>
   
-    </div>
-  
+  </div>
 
   </div>
 </ion-content>

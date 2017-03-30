@@ -78,6 +78,7 @@ export class UserService {
             //resolve(loginData);
           },
           loginDataError => {
+            this.events.publish('user:login', false);
             console.log('loginDataError', loginDataError);
             //this.showAlert('LoginError', JSON.stringify(loginDataError));
             this.showAlert('Erro', 'Usuário e/ou senha inválidos.');

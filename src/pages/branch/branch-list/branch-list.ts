@@ -80,7 +80,12 @@ export class BranchListPage {
 
     this.$branch.query(this.queryInput).then(
       data => {
-        this.branches = this.branches.concat(<Array<Branch>> data);
+        if(data.length > 0){
+          this.branches = this.branches.concat(<Array<Branch>> data);
+        }
+        else{
+          this.queryInput.page = this.queryInput.page - 1;
+        }
         infiniteScroll.complete();
       }
     );    

@@ -22,7 +22,6 @@ export class BranchResource extends AuthGuardResource {
 
   @ResourceAction({
     isArray: true,
-    params: {'include': 'images'}
   })
   query: ResourceMethod<QueryInput, Array<Branch>>;
 
@@ -38,4 +37,11 @@ export class BranchResource extends AuthGuardResource {
     params: {'include': 'images'}
   })
   search: ResourceMethod<{data: string}, Array<Branch>>;
+
+
+  // FAVORITES ----------------------------------------------
+  @ResourceAction({
+    path: '/favorites/{!userId}',
+  })
+  queryFavoritesByUser: ResourceMethod<{page: number, userId: number}, Array<Branch>>; 
 }

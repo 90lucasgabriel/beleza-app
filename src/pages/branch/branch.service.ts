@@ -43,4 +43,17 @@ export class BranchService {
   }
 
 
+  // FAVORITES -----------------------------------------------
+  public queryFavoritesByUser(page: number, userId: number): Promise<Array<Branch>>{
+    
+    return new Promise( resolve => {
+      this.branchRes.queryFavoritesByUser({page, userId}).$observable
+        .subscribe( data => {
+          this.branches = data;
+          resolve(this.branches);
+        })
+    });
+  }
+
+
 }

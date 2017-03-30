@@ -3,29 +3,30 @@ import { Component, ViewChild, ElementRef }                    from '@angular/co
 import { StatusBar } from 'ionic-native';
 
 import { QueryInput }          from '../../../common/models/query-input';
-import { Order }               from '../order.model';
-import { OrderService }        from '../order.service';
+import { Branch }              from '../branch.model';
+import { BranchService }       from '../branch.service';
 import { UserService }         from '../../user/user.service';
 
+import { BranchDetailsPage }   from '../branch-details/branch-details';
+import { BranchSearchPage }    from '../branch-search/branch-search';
 import { OrderCreatePage }     from '../../order/order-create/order-create';
 import { UserLoginPage   }     from '../../user/user-login/user-login';
 import { LocalStorage }        from '../../../common/services/local-storage';
 
 
 @Component({
-  selector    : 'page-order-list',
-  templateUrl : 'order-list.html',
-  providers   : [OrderService, UserService]
+  selector    : 'page-branch-list-favorites',
+  templateUrl : 'branch-list-favorites.html',
+  providers   : [BranchService, UserService]
 })
-export class OrderListPage {
+export class BranchListFavoritesPage {
   @ViewChild(Content)       content     : Content;
   @ViewChild('contentList') contentList : ElementRef;
 
 
   public  color       = 'primary';
   public  facebook    = '';
-  public  orders      : Array<Order>;
-  public  userId      : number = 4;
+  public  branches    : Array<Branch>;
   public  queryInput  : QueryInput     = {
     page: 1
   };
@@ -38,7 +39,7 @@ export class OrderListPage {
     public  viewCtrl       : ViewController,
     private app            : App,
     private modalCtrl      : ModalController,
-    private $order         : OrderService,
+    private $branch        : BranchService,
     private $user          : UserService,
     private $localStorage  : LocalStorage) {
 
@@ -60,15 +61,20 @@ export class OrderListPage {
   }
 
   public query(): void{
-    /*this.queryInput.page = 1;
-    this.orders          = null;
+    this.queryInput.page = 1;
+    this.branches        = null; 
 
-    this.$order.query(this.queryInput, this.userId).then(
-      data => {
-        this.orders      = <Array<Order>> data;
-        this.showSpinner = false;
-      });
-      */
+    this.$user.getByToken().then(
+      userData => {
+        this.$branch.queryFavoritesByUser(this.queryInput.page, userData.id).then(
+          data => {
+            this.branches    = <Array<Branch>> data;
+            this.showSpinner = false;
+          }
+        );
+      }
+    );    
+
   }
 
   private userIsLogged(): boolean{
@@ -83,15 +89,24 @@ export class OrderListPage {
   }
 
   public doInfinite(infiniteScroll): void{
-    /*this.queryInput.page = this.queryInput.page + 1;
+    this.queryInput.page = this.queryInput.page + 1;
 
-    this.$order.query(this.queryInput).then(
-      data => {
-        this.orders   = this.orders  .concat(<Array<Order>> data);
-        infiniteScroll.complete();
+    this.$user.getByToken().then(
+      userData => {
+        this.$branch.queryFavoritesByUser(this.queryInput.page, userData.id).then(
+          data => {
+            if(data.length > 0){
+              this.branches = this.branches.concat(<Array<Branch>> data);
+            }
+            else{
+              this.queryInput.page = this.queryInput.page - 1;
+            }
+            infiniteScroll.complete();
+          }
+        );
       }
-    );
-    */    
+    );  
+    
   }
 
 
@@ -102,17 +117,17 @@ export class OrderListPage {
 
 
 
-  //NAV ------------
+  //NAV ----------------------------------------------------
   public goBranchDetails(branchId: number): void{
-    //this.app.getRootNav().push(BranchDetailsPage, {id: branchId});
+    this.app.getRootNav().push(BranchDetailsPage, {id: branchId});
   }
 
-   goOrderCreate(branchId: number): void{
-    //this.app.getRootNav().push(OrderCreatePage, {id: branchId});
+  public goOrderCreate(branchId: number): void{
+    this.app.getRootNav().push(OrderCreatePage, {id: branchId});
   }
 
   public goBranchSearch(): void{
-    //this.navCtrl.push(BranchSearchPage, {});
+    this.navCtrl.push(BranchSearchPage, {});
   }
 
   public openLogin(): void{
