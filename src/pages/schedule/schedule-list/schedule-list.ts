@@ -3,28 +3,28 @@ import { Component, ViewChild, ElementRef }                    from '@angular/co
 import { StatusBar } from 'ionic-native';
 
 import { QueryInput }          from '../../../common/models/query-input';
-import { Order }               from '../order.model';
-import { OrderService }        from '../order.service';
+import { Schedule }               from '../schedule.model';
+import { ScheduleService }        from '../schedule.service';
 import { UserService }         from '../../user/user.service';
 
-import { OrderCreatePage }     from '../../order/order-create/order-create';
+import { ScheduleCreatePage }     from '../../schedule/schedule-create/schedule-create';
 import { UserLoginPage   }     from '../../user/user-login/user-login';
 import { LocalStorage }        from '../../../common/services/local-storage';
 
 
 @Component({
-  selector    : 'page-order-list',
-  templateUrl : 'order-list.html',
-  providers   : [OrderService, UserService]
+  selector    : 'page-schedule-list',
+  templateUrl : 'schedule-list.html',
+  providers   : [ScheduleService, UserService]
 })
-export class OrderListPage {
+export class ScheduleListPage {
   @ViewChild(Content)       content     : Content;
   @ViewChild('contentList') contentList : ElementRef;
 
 
   public  color       = 'primary';
   public  facebook    = '';
-  public  orders      : Array<Order>;
+  public  schedules      : Array<Schedule>;
   public  userId      : number = 4;
   public  queryInput  : QueryInput     = {
     page: 1
@@ -38,7 +38,7 @@ export class OrderListPage {
     public  viewCtrl       : ViewController,
     private app            : App,
     private modalCtrl      : ModalController,
-    private $order         : OrderService,
+    private $schedule      : ScheduleService,
     private $user          : UserService,
     private $localStorage  : LocalStorage) {
 
@@ -61,11 +61,11 @@ export class OrderListPage {
 
   public query(): void{
     /*this.queryInput.page = 1;
-    this.orders          = null;
+    this.schedules          = null;
 
-    this.$order.query(this.queryInput, this.userId).then(
+    this.$schedule.query(this.queryInput, this.userId).then(
       data => {
-        this.orders      = <Array<Order>> data;
+        this.schedules      = <Array<Schedule>> data;
         this.showSpinner = false;
       });
       */
@@ -85,9 +85,9 @@ export class OrderListPage {
   public doInfinite(infiniteScroll): void{
     /*this.queryInput.page = this.queryInput.page + 1;
 
-    this.$order.query(this.queryInput).then(
+    this.$schedule.query(this.queryInput).then(
       data => {
-        this.orders   = this.orders  .concat(<Array<Order>> data);
+        this.schedules   = this.schedules  .concat(<Array<Schedule>> data);
         infiniteScroll.complete();
       }
     );
@@ -107,8 +107,8 @@ export class OrderListPage {
     //this.app.getRootNav().push(BranchDetailsPage, {id: branchId});
   }
 
-   goOrderCreate(branchId: number): void{
-    //this.app.getRootNav().push(OrderCreatePage, {id: branchId});
+  public goScheduleCreate(branchId: number): void{
+    //this.app.getRootNav().push(ScheduleCreatePage, {id: branchId});
   }
 
   public goBranchSearch(): void{

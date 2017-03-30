@@ -5,7 +5,7 @@ import { StatusBar }                  from 'ionic-native';
 import { Branch, BranchImage }        from '../branch.model';
 import { BranchService }  	          from '../branch.service';
 
-import { OrderCreatePage }            from '../../order/order-create/order-create';
+import { ScheduleCreatePage }         from '../../schedule/schedule-create/schedule-create';
 
 @Component({
   selector    : 'page-branch-details',
@@ -18,7 +18,7 @@ export class BranchDetailsPage {
 
   public color      = 'primary';
   public title      = '';
-  public hasBorder  = '';
+  public hasBschedule  = '';
 
   public id         : number;
   public branch     : Branch; 
@@ -57,8 +57,8 @@ export class BranchDetailsPage {
 
 
   // NAV -------------------------------------------
-  public goOrderCreate(branchId: number): void{
-    this.app.getRootNav().push(OrderCreatePage, {id: branchId});
+  public goscheduleCreate(branchId: number): void{
+    this.app.getRootNav().push(ScheduleCreatePage, {id: branchId});
   }
 
   public dismiss():void {
@@ -85,7 +85,7 @@ export class BranchDetailsPage {
       this.zone.run(() => {
         if(result > 55){
           this.title = this.branch.company.data.name;
-          this.hasBorder = 'no-border';
+          this.hasBschedule = 'no-bschedule';
         }
         else{
          this.title = ''; 

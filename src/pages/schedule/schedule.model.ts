@@ -1,9 +1,9 @@
-export interface Order{
+export interface Schedule{
 	id?              : number,
 	id_social?       : string,
 	first_name?      : string,
 	last_name?       : string,
-	ordername?        : string,
+	schedulename?        : string,
 	email?           : string,	
 	role?            : number,
 	picture?         : string,

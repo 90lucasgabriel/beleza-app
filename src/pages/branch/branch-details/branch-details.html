@@ -15,7 +15,7 @@
   </div>
   
   <ion-fab right bottom *ngIf="!showSpinner"> 
-    <button ion-fab (tap)="goOrderCreate(branch.id)"><ion-icon name="calendar"></ion-icon></button>
+    <button ion-fab (tap)="goscheduleCreate(branch.id)"><ion-icon name="calendar"></ion-icon></button>
   </ion-fab>
 
   <div *ngIf="!showSpinner"  class="margin-bottom-30">
@@ -48,7 +48,7 @@
       <ion-card-content class="margin-top-10 margin-bottom-10" style="padding: 0">
         <ion-grid>
           <ion-row>          
-            <ion-col text-center (tap)="goOrderCreate(branch.id)">
+            <ion-col text-center (tap)="goscheduleCreate(branch.id)">
               <button ion-button icon-only clear round color="dark">
                 <ion-icon name="calendar"></ion-icon>
               </button>

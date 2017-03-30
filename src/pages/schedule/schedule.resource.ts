@@ -5,7 +5,7 @@ import { RequestMethod }            from '@angular/http';
 import { Observable }               from 'rxjs';
 
 import { AppConfig }                from '../../app/app.config';
-import { Order }                     from './order.model';
+import { Schedule }                 from './schedule.model';
 import { AuthGuardResource }        from '../../common/services/auth-guard-resource';
 
 
@@ -13,9 +13,9 @@ import { AuthGuardResource }        from '../../common/services/auth-guard-resou
 @Injectable()
 @ResourceParams({
   add2Provides : false,
-  url          : AppConfig.BASE_URL + 'api/orders'
+  url          : AppConfig.BASE_URL + 'api/schedules'
 })
-export class OrderResource extends AuthGuardResource {
+export class ScheduleResource extends AuthGuardResource {
   //private grant_type : string = 'password';
 
   constructor(
@@ -29,14 +29,14 @@ export class OrderResource extends AuthGuardResource {
     path: '/{!id}',
     params: {'include': 'images'}
   })
-  get: ResourceMethod<{id: number}, Order>;
+  get: ResourceMethod<{id: number}, Schedule>;
 
   @ResourceAction({
-    url: AppConfig.BASE_URL + 'api/order',
+    url: AppConfig.BASE_URL + 'api/schedule',
     auth: true,
     noPresenter: true
   })
-  order: ResourceMethod<{}, Order>;
+  schedule: ResourceMethod<{}, Schedule>;
 
 
   @ResourceAction({
@@ -44,7 +44,7 @@ export class OrderResource extends AuthGuardResource {
 
     }
   )
-  register: ResourceMethod<Order, Order>;
+  register: ResourceMethod<Schedule, Schedule>;
   
 
 
@@ -52,7 +52,7 @@ export class OrderResource extends AuthGuardResource {
   @ResourceAction({
     path: '/find-local-by-token/{!social}/{!token}'
   })
-  findLocalByToken: ResourceMethod<{social: string, token: string}, Order>;
+  findLocalByToken: ResourceMethod<{social: string, token: string}, Schedule>;
 
   @ResourceAction({
     path: '/find-social-by-token/{!social}/{!token}'
@@ -71,6 +71,6 @@ export class OrderResource extends AuthGuardResource {
       noPresenter: true
     }
   )
-  login: ResourceMethod<Order, any>;
+  login: ResourceMethod<Schedule, any>;
 
 }

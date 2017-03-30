@@ -8,8 +8,9 @@ import { LocalStorage }               from '../common/services/local-storage';
 import { AuthGuardResource }          from '../common/services/auth-guard-resource';
 
 import { AccountModule }              from '../pages/account/account.module';
-import { BranchModule }        from '../pages/branch/branch.module';
-import { OrderModule }                from '../pages/order/order.module';
+import { BranchModule }               from '../pages/branch/branch.module';
+import { HomeModule }                 from '../pages/home/home.module';
+import { ScheduleModule }             from '../pages/schedule/schedule.module';
 import { ServiceModule }              from '../pages/service/service.module';
 import { UserModule }                 from '../pages/user/user.module';
 import { UserService }                from '../pages/user/user.service';
@@ -27,7 +28,8 @@ import { MyApp }                      from './app.component';
     ResourceModule.forRoot(),
     AccountModule.forRoot(),
     BranchModule.forRoot(),
-    OrderModule.forRoot(),
+    HomeModule.forRoot(),
+    ScheduleModule.forRoot(),
     ServiceModule.forRoot(),
     UserModule.forRoot(),
   ],

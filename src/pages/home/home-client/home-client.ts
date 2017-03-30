@@ -2,20 +2,20 @@ import { NavController, ViewController, ModalController, Tabs, NavParams }      
 import { Component, ViewChild }      from '@angular/core';
 import { StatusBar }                 from 'ionic-native';
 
-import { BranchListPage }            from '../branch-list/branch-list';
-import { BranchListFavoritesPage }   from '../branch-list-favorites/branch-list-favorites';
-import { BranchSearchPage }          from '../branch-search/branch-search';
-import { OrderCreatePage }           from '../../order/order-create/order-create';
-import { OrderListPage }             from '../../order/order-list/order-list';
+import { BranchListPage }            from '../../branch/branch-list/branch-list';
+import { BranchListFavoritesPage }   from '../../branch/branch-list-favorites/branch-list-favorites';
+import { BranchSearchPage }          from '../../branch/branch-search/branch-search';
+import { ScheduleCreatePage }        from '../../schedule/schedule-create/schedule-create';
+import { ScheduleListPage }          from '../../schedule/schedule-list/schedule-list';
 import { LocalStorage }              from '../../../common/services/local-storage';
 
 
 @Component({
-  selector    : 'page-branch-home',
-  templateUrl : 'branch-home.html',
+  selector    : 'page-home-client',
+  templateUrl : 'home-client.html',
   providers   : []
 })
-export class BranchHomePage {
+export class HomeClientPage {
   @ViewChild('tabs') tabs: Tabs;
 
   public showSpinner  : boolean = false;
@@ -34,7 +34,7 @@ export class BranchHomePage {
 
     this.nearTab           = BranchListPage;
     this.favoritesTab      = BranchListFavoritesPage;
-    this.schedulesTab      = OrderListPage;
+    this.schedulesTab      = ScheduleListPage;
     this.query();
   }
 

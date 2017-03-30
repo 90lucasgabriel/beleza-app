@@ -9,7 +9,7 @@ import { UserService }         from '../../user/user.service';
 
 import { BranchDetailsPage }   from '../branch-details/branch-details';
 import { BranchSearchPage }    from '../branch-search/branch-search';
-import { OrderCreatePage }     from '../../order/order-create/order-create';
+import { ScheduleCreatePage }     from '../../schedule/schedule-create/schedule-create';
 import { UserLoginPage   }     from '../../user/user-login/user-login';
 import { LocalStorage }        from '../../../common/services/local-storage';
 
@@ -122,8 +122,8 @@ export class BranchListFavoritesPage {
     this.app.getRootNav().push(BranchDetailsPage, {id: branchId});
   }
 
-  public goOrderCreate(branchId: number): void{
-    this.app.getRootNav().push(OrderCreatePage, {id: branchId});
+  public goscheduleCreate(branchId: number): void{
+    this.app.getRootNav().push(ScheduleCreatePage, {id: branchId});
   }
 
   public goBranchSearch(): void{

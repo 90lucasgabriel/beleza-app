@@ -7,15 +7,15 @@ import { Token }                 from '../../common/models/token';
 import { QueryInput }            from '../../common/models/query-input';
 import { LocalStorage }          from '../../common/services/local-storage';
 
-import { Order } 			           from './order.model';
-import { OrderResource } 	       from './order.resource';
+import { Schedule } 			           from './schedule.model';
+import { ScheduleResource } 	       from './schedule.resource';
 
 
 
 @Injectable()
-export class OrderService {
-  private order    : Order;
-  public  message : any;
+export class ScheduleService {
+  private schedule : Schedule;
+  public  message  : any;
 
 
   constructor(
@@ -24,7 +24,7 @@ export class OrderService {
     private modalCtrl     : ModalController,
     private menuCtrl      : MenuController,
     private $localStorage : LocalStorage,
-    private orderRes      : OrderResource
+    private scheduleRes   : ScheduleResource
   ) {}
 
 
@@ -37,10 +37,10 @@ export class OrderService {
 
   }
   
-  public get(id): Promise<Order>{
-    return new Promise<Order>( 
+  public get(id): Promise<Schedule>{
+    return new Promise<Schedule>( 
       (resolve, reject) => {
-    		this.orderRes.get(id).$observable.subscribe( 
+    		this.scheduleRes.get(id).$observable.subscribe( 
           getData => {
       			resolve(getData);
     		  },
@@ -52,16 +52,16 @@ export class OrderService {
     );
   }
 
-  public register(order: Order): Promise<Order>{
+  public register(schedule: Schedule): Promise<Schedule>{
     return new Promise( resolve => {
-      this.orderRes.register(order).$observable.subscribe( 
+      this.scheduleRes.register(schedule).$observable.subscribe( 
         registerData => {
           if(registerData){
-            order.ordername = registerData.email;
-            order.picture  = registerData.picture;
+            schedule.schedulename = registerData.email;
+            schedule.picture  = registerData.picture;
           }
-          this.login(order);
-          resolve(order);
+          this.login(schedule);
+          resolve(schedule);
         },
         registerDataError => {
           this.showAlert('registerDataError', registerDataError);
@@ -70,15 +70,15 @@ export class OrderService {
     }); 
   }
 
-  public login(data: Order): Promise<Object>{
+  public login(data: Schedule): Promise<Object>{
     return new Promise( resolve => {
-      this.orderRes.login(data).$observable
+      this.scheduleRes.login(data).$observable
         .subscribe( 
           loginData => {
             console.log('loginData', loginData);
             console.log('loginData2', data);
             this.$localStorage.set('token', loginData);
-            this.events.publish('order:login', true);
+            this.events.publish('schedule:login', true);
             //resolve(loginData);
           },
           loginDataError => {
@@ -93,25 +93,25 @@ export class OrderService {
 
   public logout(): void {
     this.$localStorage.remove('token');
-    this.events.publish('order:login', false);
+    this.events.publish('schedule:login', false);
   }
 
   private getToken(): Token{
     return this.$localStorage.get('token');
   } 
 
-  public getByToken(): Promise<Order>{
-    //this.orderRes.setHeaders('Bearer ' + this.getToken());
-    return new Promise<Order>(
+  public getByToken(): Promise<Schedule>{
+    //this.scheduleRes.setHeaders('Bearer ' + this.getToken());
+    return new Promise<Schedule>(
       (resolve, reject) => {
-        this.orderRes.order().$observable.subscribe(
-          orderData => {
-            resolve(orderData);
+        this.scheduleRes.schedule().$observable.subscribe(
+          scheduleData => {
+            resolve(scheduleData);
           },
-          orderError => {
+          scheduleError => {
             this.refreshToken();
-            reject(orderError);
-            console.log('orderError', orderError);
+            reject(scheduleError);
+            console.log('scheduleError', scheduleError);
           }
         );
       }
@@ -193,15 +193,15 @@ export class OrderService {
 
   //Se existir, fazer login; Senão, pesquisar no Facebook com o token;
   private findLocalByToken(social: string, token: string): void{
-    this.orderRes.findLocalByToken({social: social, token: token}).$observable.subscribe(
+    this.scheduleRes.findLocalByToken({social: social, token: token}).$observable.subscribe(
       localData      => {
-        let orderData: Object = {
+        let scheduleData: Object = {
           social       : social,
           social_token : token,
-          ordername     : localData.email
+          schedulename     : localData.email
         }
-        console.log('localData', orderData);
-        this.login(orderData);
+        console.log('localData', scheduleData);
+        this.login(scheduleData);
       },
       localDataError => {
         this.findSocialByToken(social, token);
@@ -211,7 +211,7 @@ export class OrderService {
 
   //Se encontrar no Facebook com o token, registrar na base.
   private findSocialByToken(social: string, token: string): void{
-    this.orderRes.findSocialByToken({social: social, token: token}).$observable.subscribe(
+    this.scheduleRes.findSocialByToken({social: social, token: token}).$observable.subscribe(
       socialData      => {
         let data = {
           social       : social,

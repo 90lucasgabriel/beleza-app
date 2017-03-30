@@ -10,14 +10,14 @@ import { BranchService }            from '../../branch/branch.service';
 
 import { ServiceListPage }          from '../../service/service-list/service-list';
 import { UserListPage }             from '../../user/user-list/user-list';
-
+ 
 
 @Component({
-  selector    : 'page-order-create',
-  templateUrl : 'order-create.html',
+  selector    : 'page-schedule-create',
+  templateUrl : 'schedule-create.html',
   providers   : [BranchService]
 })
-export class OrderCreatePage {
+export class ScheduleCreatePage {
   public facebook = '';
   public  queryInput  : QueryInput     = {
     page: 1

@@ -19,7 +19,7 @@ import { BranchService }       from '../branch.service';
 
 import { BranchDetailsPage }   from '../branch-details/branch-details';
 import { BranchSearchPage }    from '../branch-search/branch-search';
-import { OrderCreatePage }     from '../../order/order-create/order-create';
+import { ScheduleCreatePage }     from '../../schedule/schedule-create/schedule-create';
 import { LocalStorage }        from '../../../common/services/local-storage';
 
 
@@ -104,8 +104,8 @@ export class BranchListPage {
     this.app.getRootNav().push(BranchDetailsPage, {id: branchId});
   }
 
-  public goOrderCreate(branchId: number): void{
-    this.app.getRootNav().push(OrderCreatePage, {id: branchId});
+  public goscheduleCreate(branchId: number): void{
+    this.app.getRootNav().push(ScheduleCreatePage, {id: branchId});
   }
 
 

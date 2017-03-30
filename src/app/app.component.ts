@@ -7,7 +7,7 @@ import { UserService }             from '../pages/user/user.service';
 
 import { AccountListPage }         from '../pages/account/account-list/account-list';
 import { BranchListPage }          from '../pages/branch/branch-list/branch-list';
-import { BranchHomePage }          from '../pages/branch/branch-home/branch-home';
+import { HomeClientPage }          from '../pages/home/home-client/home-client';
 import { UserLoginPage }           from '../pages/user/user-login/user-login';
 import { OrderCreatePage }         from '../pages/order/order-create/order-create';
 import { ServiceListPage }         from '../pages/service/service-list/service-list';
@@ -21,7 +21,7 @@ import { ServiceListPage }         from '../pages/service/service-list/service-l
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage            : any    = BranchHomePage;
+  rootPage            : any    = HomeClientPage;
   pages               : Array<{title: string, component: any, params: Object}>;
   public userPicture  : string = 'http://knowledge-commons.com/static/assets/images/avatar.png';
   public userEmail    : string = 'Entre com sua conta';
@@ -69,8 +69,8 @@ export class MyApp {
 
     if(this.$user.isLogged() || value){
       this.pages = [
-        { title: 'Salões de Beleza',  component: BranchHomePage, params: {tab: 0}},
-        { title: 'Favoritos',         component: BranchHomePage, params: {tab: 1}},
+        { title: 'Salões de Beleza',  component: HomeClientPage, params: {tab: 0}},
+        { title: 'Favoritos',         component: HomeClientPage, params: {tab: 1}},
         { title: 'Sair',              component: null,           params: null},
       ];
 
@@ -90,8 +90,8 @@ export class MyApp {
     }
     else{
       this.pages = [
-        { title: 'Salões de Beleza',  component: BranchHomePage, params: {tab: 0}},
-        { title: 'Favoritos',         component: BranchHomePage, params: {tab: 1}}
+        { title: 'Salões de Beleza',  component: HomeClientPage, params: {tab: 0}},
+        { title: 'Favoritos',         component: HomeClientPage, params: {tab: 1}}
       ]; 
 
       this.userEmail   = 'Entre com sua conta';
