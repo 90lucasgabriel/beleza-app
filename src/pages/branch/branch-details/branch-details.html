@@ -36,10 +36,10 @@
       <ion-card-header class="primary-color dark-background">
         <ion-item  class="primary-color dark-background">
           <ion-avatar item-left>
-            <img [src]="branch?.establishment.data.image" />
+            <img [src]="branch?.company.data.image" />
           </ion-avatar>
           <div>
-            <h1 class="primary-color">{{ branch?.establishment.data.name }}</h1>
+            <h1 class="primary-color">{{ branch?.company.data.name }}</h1>
             <p class="primary-color">10 Avaliações</p>
           </div>
         </ion-item>
@@ -71,12 +71,12 @@
 
         <hr />
         <p padding>
-          {{ branch?.establishment.data.description }}
-          {{ branch?.establishment.data.description }}
-          {{ branch?.establishment.data.description }}
-          {{ branch?.establishment.data.description }}
-          {{ branch?.establishment.data.description }}
-          {{ branch?.establishment.data.description }}
+          {{ branch?.company.data.description }}
+          {{ branch?.company.data.description }}
+          {{ branch?.company.data.description }}
+          {{ branch?.company.data.description }}
+          {{ branch?.company.data.description }}
+          {{ branch?.company.data.description }}
         </p>
         <hr />
 
@@ -93,7 +93,7 @@
 
         <ion-item>
           <ion-icon item-left name="globe"></ion-icon>
-          {{ branch?.establishment.data.site}}
+          {{ branch?.company.data.site}}
         </ion-item>
       </ion-list>
       </ion-card-content>

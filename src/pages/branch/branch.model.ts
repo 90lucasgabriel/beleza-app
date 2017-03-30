@@ -9,7 +9,7 @@ export interface Branch{
 	created_at    : Object,
 	updated_at    : Object,
 	
-	establishment : {data: BranchDetails},	
+	company : {data: BranchDetails},	
 	images        : {data: Array<BranchImage>},
 }
 
