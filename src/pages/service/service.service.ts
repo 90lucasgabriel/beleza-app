@@ -22,6 +22,15 @@ export class ServiceService {
     });
   }
 
+  public queryJobsByBranch(page: number, branchId: number): Promise<Array<Service>>{
+    return new Promise( resolve => {
+      this.serviceRes.queryJobsByBranch({page, branchId}).$observable
+        .subscribe( data => {
+          this.services = data;
+          resolve(this.services);
+        })
+    });
+  }
   public get(id): Promise<Service>{
     return new Promise( resolve => {
       this.serviceRes.get(id).$observable

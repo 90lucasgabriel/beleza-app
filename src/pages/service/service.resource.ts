@@ -12,7 +12,7 @@ import { AuthGuardResource }        from '../../common/services/auth-guard-resou
 @Injectable()
 @ResourceParams({
   add2Provides : false,
-  url          : AppConfig.BASE_URL + 'api/client/services'
+  url          : AppConfig.BASE_URL + 'api/client/jobs'
 })
 export class ServiceResource extends AuthGuardResource {
 
@@ -25,6 +25,13 @@ export class ServiceResource extends AuthGuardResource {
     params: {'include': 'images'}
   })
   query: ResourceMethod<QueryInput, Array<Service>>;
+
+  @ResourceAction({
+    isArray: true,
+    path: '/by-branch/{!branchId}',
+    params: {'include': 'job'}
+  })
+  queryJobsByBranch: ResourceMethod<{page: number, branchId: number}, Array<any>>;
 
   @ResourceAction({
     path: '/{!id}',

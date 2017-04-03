@@ -26,7 +26,7 @@ export class ScheduleCreatePage {
   public branch     : Branch; 
   public isModal    : boolean;
   public showSpinner: boolean = true;
-
+  public jobId;
   constructor(
     private modalCtrl     : ModalController,
     private viewCtrl      : ViewController,
@@ -61,8 +61,11 @@ export class ScheduleCreatePage {
 
   //NAV ----------------------------------------------------
   public showServiceList(): void{
-    let modal = this.modalCtrl.create(ServiceListPage);
-    modal.present(); 
+    let modal = this.modalCtrl.create(ServiceListPage, {branchId: this.id});
+    modal.onDidDismiss(data => {
+      console.log('jobId', data); 
+    });
+    this.jobId = modal.present(); 
   }
 
   public showUserProfessionalList(): void{

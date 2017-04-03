@@ -18,8 +18,8 @@
 
 <ion-content style="position: relative">
 	<ion-list>
-    <ion-item *ngFor="let service of services">
-      {{ service.description }}
+    <ion-item *ngFor="let service of services" (tap)="dismiss(service.id)">
+      {{ service.job.data.name}}
     </ion-item>
   </ion-list>
 
