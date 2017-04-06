@@ -2,38 +2,38 @@ import { Component, ViewChild } 	  from '@angular/core';
 import { NavController }            from 'ionic-angular';
 
 import { QueryInput }               from '../../../common/models/query-input';
-import { Service }                  from '../service.model';
-import { SERVICE, ServiceService }  from '../service.service';
+import { Job }                      from '../job.model';
+import { JobService }               from '../job.service';
 
-import { ServiceDetailsPage }       from '../service-details/service-details';
+import { JobDetailsPage }           from '../job-details/job-details';
 
 
 @Component({
-  selector    : 'page-service-search',
-  templateUrl : 'service-search.html',
-  providers   : [SERVICE]
+  selector    : 'page-job-search',
+  templateUrl : 'job-search.html',
+  providers   : [JobService]
 })
-export class ServiceSearchPage {
+export class JobSearchPage {
   @ViewChild('searchbar') myInput;
 
-  public  services         : Array<Service>;
-  public  originalServices : Array<Service>;
-  public  queryInput       : QueryInput     = {
+  public  jobs         : Array<Job>;
+  public  originalJobs : Array<Job>;
+  public  queryInput   : QueryInput     = {
     page: 1
   };
   public picture     = null;
   public showSpinner = true;
 
   constructor(
-  	public navCtrl   : NavController,
-  	private $service : ServiceService) {
+  	public  navCtrl  : NavController,
+  	private $job     : JobService) {
   }
 
 
   //FUNCTIONS --------------------------------------
   public query(): void{
     this.queryInput.page = 1;
-    this.services        = null;
+    this.jobs            = null;
 
   }
   
@@ -46,11 +46,11 @@ export class ServiceSearchPage {
     }
 
     if (term.trim() === '' || term.trim().length < 3) {
-      this.services = this.originalServices;
+      this.jobs = this.originalJobs;
     } else {
-      this.$service.search(params).then(
+      this.$job.search(params).then(
       data => {
-        this.services    = <Array<Service>> data;
+        this.jobs    = <Array<Job>> data;
         this.showSpinner = false;
       });
     }
@@ -72,9 +72,9 @@ export class ServiceSearchPage {
   public doInfinite(infiniteScroll): void {
   	this.queryInput.page = this.queryInput.page + 1;
 
-  	this.$service.query(this.queryInput).then(
+  	this.$job.query(this.queryInput).then(
   		data => {
-  			this.services = this.services.concat(<Array<Service>> data);
+  			this.jobs = this.jobs.concat(<Array<Job>> data);
   			infiniteScroll.complete();
   		}
     );  	
@@ -86,8 +86,8 @@ export class ServiceSearchPage {
 
 
   //NAV ----------------------------------------------------
-  public goServiceDetails(serviceId: number): void{
-    this.navCtrl.push(ServiceDetailsPage, {id: serviceId});
+  public goJobDetails(jobId: number): void{
+    this.navCtrl.push(JobDetailsPage, {id: jobId});
   }
 
 }

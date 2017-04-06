@@ -9,7 +9,7 @@
 <ion-content style="position: relative;">
     
     <ion-card>
-        <ion-item (tap)="showServiceList()" padding>
+        <ion-item (tap)="showJobList(branchId)" padding>
           <ion-icon item-left name="cut" color="dark"></ion-icon>
           Serviço
           <ion-icon item-right name="arrow-dropright" color="dark"></ion-icon>
@@ -17,7 +17,7 @@
       </ion-card>
       
       <ion-card>
-        <div style="text-align: center;" (tap)="showUserProfessionalList()">
+        <div style="text-align: center;" (tap)="showUserProfessionalList(branchId, jobId)">
           <img src="assets/img/avatar.png" style="width: 120px; border-radius: 100%; margin: 0 auto; margin-top: 20px;">
           <ion-item padding class="padding-top-0">
             <ion-icon item-left large name="contact" color="dark"></ion-icon>

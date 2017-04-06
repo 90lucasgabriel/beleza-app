@@ -8,7 +8,8 @@ import { LocalStorage }             from '../../../common/services/local-storage
 import { Branch }                   from '../../branch/branch.model';
 import { BranchService }            from '../../branch/branch.service';
 
-import { ServiceListPage }          from '../../service/service-list/service-list';
+import { JobListPage }              from '../../job/job-list/job-list';
+import { EmployeeListPage }         from '../../employee/employee-list/employee-list';
 import { UserListPage }             from '../../user/user-list/user-list';
  
 
@@ -26,7 +27,14 @@ export class ScheduleCreatePage {
   public branch     : Branch; 
   public isModal    : boolean;
   public showSpinner: boolean = true;
+  
+  public branchId;
   public jobId;
+  public branchJobId;
+  public employeeId;
+
+  public job;
+
   constructor(
     private modalCtrl     : ModalController,
     private viewCtrl      : ViewController,
@@ -34,6 +42,8 @@ export class ScheduleCreatePage {
     private navParams     : NavParams,
     private $branch       : BranchService,
     private $localStorage : LocalStorage) {
+
+    this.branchId      = this.navParams.get('id');
   }
 
 
@@ -60,17 +70,23 @@ export class ScheduleCreatePage {
 
 
   //NAV ----------------------------------------------------
-  public showServiceList(): void{
-    let modal = this.modalCtrl.create(ServiceListPage, {branchId: this.id});
+  public showJobList(branchId: number): void{
+    console.log('branchId', branchId);
+    let modal = this.modalCtrl.create(JobListPage, {branchId: branchId});
     modal.onDidDismiss(data => {
-      console.log('jobId', data); 
+      this.jobId     = data;
+      console.log('jobId', this.jobId);
     });
     this.jobId = modal.present(); 
   }
 
-  public showUserProfessionalList(): void{
-    let modal = this.modalCtrl.create(UserListPage);
-    modal.present(); 
+  public showUserProfessionalList(branchId: number, jobId?: number): void{
+    let modal = this.modalCtrl.create(EmployeeListPage, {branchId: branchId, jobId: jobId});
+    modal.onDidDismiss(data => {
+      console.log('employeeId', this.employeeId)
+      this.employeeId = data;
+    });
+    this.employeeId = modal.present(); 
   }
 
   public dismiss():void {
@@ -79,12 +95,10 @@ export class ScheduleCreatePage {
 
 
 
-
   //VIEW ------------------------------------------------------
   public ionViewWillEnter(){
-    this.id      = this.navParams.get('id');
     this.isModal = this.navParams.get('isModal');
-    this.get(this.id);
+    this.get(this.branchId);
 
     StatusBar.backgroundColorByHexString('#a01b1b');
   }

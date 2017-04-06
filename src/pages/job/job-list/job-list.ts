@@ -4,35 +4,35 @@ import { StatusBar }                from 'ionic-native';
 
 
 import { QueryInput }               from '../../../common/models/query-input';
-import { Service }                  from '../service.model';
-import { SERVICE, ServiceService }  from '../service.service';
+import { Job }                      from '../job.model';
+import { JobService }               from '../job.service';
 
-import { ServiceDetailsPage }       from '../service-details/service-details';
-import { ServiceSearchPage }        from '../service-search/service-search';
+import { JobDetailsPage }           from '../job-details/job-details';
+import { JobSearchPage }            from '../job-search/job-search';
 import { LocalStorage }             from '../../../common/services/local-storage';
 
 
 @Component({
-  selector    : 'page-service-list',
-  templateUrl : 'service-list.html',
-  providers   : [ServiceService]
+  selector    : 'page-job-list',
+  templateUrl : 'job-list.html',
+  providers   : [JobService]
 })
-export class ServiceListPage {
+export class JobListPage {
   @ViewChild('searchbar') searchbar;
 
   public facebook = '';
-  //public  services    : Array<Service>;
+  //public  branchJobs    : Array<Job>;
   public  queryInput  : QueryInput     = {
     page: 1
   };
-  public showSpinner = false;
-  public services = [];
+  public showSpinner: boolean = true;
+  public branchJobs = [];
   public branchId: number;
   constructor(
     public  navCtrl       : NavController,
     private navParams     : NavParams,
     public  viewCtrl      : ViewController,
-    private $service      : ServiceService,
+    private $job          : JobService,
     private $localStorage : LocalStorage) {
 
 
@@ -45,11 +45,11 @@ export class ServiceListPage {
 
   public query(): void{
     this.queryInput.page = 1;
-    this.services        = null;
+    this.branchJobs        = null;
 
-    this.$service.queryJobsByBranch(this.queryInput.page, this.branchId).then(
+    this.$job.queryJobsByBranch(this.queryInput.page, this.branchId).then(
       data => {
-        this.services    = <Array<any>> data;
+        this.branchJobs    = <Array<any>> data;
         this.showSpinner = false;
       });
   }
@@ -58,19 +58,19 @@ export class ServiceListPage {
 
 
   //COMPONENTS ----------------------------------------------------------
-  public dismiss(jobId?: number) {
-    this.viewCtrl.dismiss({jobId: jobId});
+  public dismiss(id?: number) {
+    this.viewCtrl.dismiss(id);
   }
 
 
 
   //NAV ----------------------------------------------------
-  public goServiceDetails(serviceId: number): void{
-    this.navCtrl.push(ServiceDetailsPage, {id: serviceId});
+  public goJobDetails(serviceId: number): void{
+    this.navCtrl.push(JobDetailsPage, {id: serviceId});
   }
 
-  public goServiceSearch(): void{
-    this.navCtrl.push(ServiceSearchPage, {});
+  public goJobSearch(): void{
+    this.navCtrl.push(JobSearchPage, {});
   }
 
 

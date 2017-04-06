@@ -8,9 +8,9 @@ import { UserService }             from '../pages/user/user.service';
 import { AccountListPage }         from '../pages/account/account-list/account-list';
 import { BranchListPage }          from '../pages/branch/branch-list/branch-list';
 import { HomeClientPage }          from '../pages/home/home-client/home-client';
-import { UserLoginPage }           from '../pages/user/user-login/user-login';
+import { JobListPage }             from '../pages/job/job-list/job-list';
 import { OrderCreatePage }         from '../pages/order/order-create/order-create';
-import { ServiceListPage }         from '../pages/service/service-list/service-list';
+import { UserLoginPage }           from '../pages/user/user-login/user-login';
 
 
 @Component({

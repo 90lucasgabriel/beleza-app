@@ -17,9 +17,13 @@
 
 
 <ion-content style="position: relative">
-	<ion-list>
-    <ion-item *ngFor="let service of services" (tap)="dismiss(service.id)">
-      {{ service.job.data.name}}
+  <div class="spinner main" *ngIf="showSpinner">
+    <ion-spinner></ion-spinner>
+  </div>
+  
+  <ion-list #contentList *ngIf="!showSpinner">
+    <ion-item *ngFor="let branchJob of branchJobs" (tap)="dismiss(branchJob.id)">
+      {{ branchJob.job.data.name}}
     </ion-item>
   </ion-list>
 

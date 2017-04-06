@@ -2,9 +2,9 @@
 
 export class AppConfig {
 	//public static BASE_URL: string = 'http://localhost:8000/';  
-	public static BASE_URL: string = 'http://192.168.1.102:8000/'; 
-	//public static BASE_URL: string = 'http://fathomless-mesa-13260.herokuapp.com/public/';  
- 
+	//public static BASE_URL: string = 'http://192.168.1.102:8000/'; 
+	public static BASE_URL: string = 'http://fathomless-mesa-13260.herokuapp.com/public/';  
+  
 
 	/*ionic.io
 	public static CLOUD_SETTINGS: CloudSettings = {

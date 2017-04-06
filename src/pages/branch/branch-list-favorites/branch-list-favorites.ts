@@ -9,7 +9,7 @@ import { UserService }         from '../../user/user.service';
 
 import { BranchDetailsPage }   from '../branch-details/branch-details';
 import { BranchSearchPage }    from '../branch-search/branch-search';
-import { ScheduleCreatePage }     from '../../schedule/schedule-create/schedule-create';
+import { ScheduleCreatePage }  from '../../schedule/schedule-create/schedule-create';
 import { UserLoginPage   }     from '../../user/user-login/user-login';
 import { LocalStorage }        from '../../../common/services/local-storage';
 

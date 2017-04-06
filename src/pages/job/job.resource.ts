@@ -5,7 +5,7 @@ import { Observable }               from 'rxjs';
 
 import { AppConfig }                from '../../app/app.config';
 import { QueryInput }               from '../../common/models/query-input';
-import { Service }                  from './service.model';
+import { Job }                      from './job.model';
 
 import { AuthGuardResource }        from '../../common/services/auth-guard-resource';
 
@@ -14,7 +14,7 @@ import { AuthGuardResource }        from '../../common/services/auth-guard-resou
   add2Provides : false,
   url          : AppConfig.BASE_URL + 'api/client/jobs'
 })
-export class ServiceResource extends AuthGuardResource {
+export class JobResource extends AuthGuardResource {
 
   constructor(http: Http, injector: Injector){
     super(http, injector);
@@ -24,7 +24,7 @@ export class ServiceResource extends AuthGuardResource {
     isArray: true,
     params: {'include': 'images'}
   })
-  query: ResourceMethod<QueryInput, Array<Service>>;
+  query: ResourceMethod<QueryInput, Array<Job>>;
 
   @ResourceAction({
     isArray: true,
@@ -37,12 +37,12 @@ export class ServiceResource extends AuthGuardResource {
     path: '/{!id}',
     params: {'include': 'images'}
   })
-  get: ResourceMethod<{id: number}, Service>;
+  get: ResourceMethod<{id: number}, Job>;
 
   @ResourceAction({
     isArray: true,
     path: '/search/{!data}',
     params: {'include': 'images'}
   })
-  search: ResourceMethod<{data: string}, Array<Service>>;
+  search: ResourceMethod<{data: string}, Array<Job>>;
 }
