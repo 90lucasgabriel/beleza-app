@@ -1,24 +1,24 @@
 import { Component } 					        from '@angular/core';
 import { NavController, NavParams } 	from 'ionic-angular';
 
-import { Service }                  	from '../service.model';
-import { SERVICE, ServiceService }  	from '../service.service';
+import { Job }                  	    from '../job.model';
+import { JobService }  	              from '../job.service';
 
 @Component({
-  selector    : 'page-service-details',
-  templateUrl : 'service-details.html',
-  providers   : [SERVICE]
+  selector    : 'page-job-details',
+  templateUrl : 'job-details.html',
+  providers   : [JobService]
 })
-export class ServiceDetailsPage {
+export class JobDetailsPage {
   public id         : number;
-  public service    : Service; 
+  public job        : Job; 
   public showSpinner: boolean = true;
   public pictures   : Array<Object>;
 
   constructor(
   public  navCtrl   : NavController,
   private navParams : NavParams,
-  private $service  : ServiceService) {
+  private $job      : JobService) {
 
   	this.id = navParams.get('id');
   	this.get(this.id);
@@ -32,10 +32,10 @@ export class ServiceDetailsPage {
       id      : id
     }
 
-    this.$service.get(params).then(
+    this.$job.get(params).then(
       data => {
-        this.service     = <Service> data;
-        this.pictures    = this.service.images.data;
+        this.job     = <Job> data;
+        this.pictures    = this.job.images.data;
         this.showSpinner = false;
       });
     

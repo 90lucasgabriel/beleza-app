@@ -9,10 +9,12 @@ import { AuthGuardResource }          from '../common/services/auth-guard-resour
 
 import { AccountModule }              from '../pages/account/account.module';
 import { BranchModule }               from '../pages/branch/branch.module';
+import { EmployeeModule }             from '../pages/employee/employee.module';
 import { HomeModule }                 from '../pages/home/home.module';
 import { ScheduleModule }             from '../pages/schedule/schedule.module';
-import { ServiceModule }              from '../pages/service/service.module';
+import { JobModule }                  from '../pages/job/job.module';
 import { UserModule }                 from '../pages/user/user.module';
+
 import { UserService }                from '../pages/user/user.service';
 
 import { AppConfig }                  from './app.config';
@@ -28,9 +30,10 @@ import { MyApp }                      from './app.component';
     ResourceModule.forRoot(),
     AccountModule.forRoot(),
     BranchModule.forRoot(),
+    EmployeeModule.forRoot(),
     HomeModule.forRoot(),
     ScheduleModule.forRoot(),
-    ServiceModule.forRoot(),
+    JobModule.forRoot(),
     UserModule.forRoot(),
   ],
   bootstrap: [IonicApp],
